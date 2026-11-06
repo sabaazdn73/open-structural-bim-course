@@ -5,7 +5,7 @@ text (tools/lessons_common.py, course/_steps/), the brief and the getting-starte
 web/data/course.json, packs the checker into web/data/bimcheck.json, and copies the datasets,
 drawings and reference answers into web/files/.
 
-Usage:  python tools/build_web.py        (needs: python -m pip install markdown ./checker)
+Usage:  python tools/build_web.py        (needs: python -m pip install markdown-it-py ./checker)
 """
 import json
 import os
@@ -14,7 +14,7 @@ import re
 import shutil
 import sys
 
-import markdown
+from markdown_it import MarkdownIt
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, os.path.join(ROOT, "tools"))
@@ -23,6 +23,7 @@ from lessons_common import L, SECTIONS  # noqa: E402
 from bimcheck.exercises import REGISTRY  # noqa: E402
 
 WEB = os.path.join(ROOT, "web")
+MD = MarkdownIt("commonmark", {"html": False}).enable("table")   # CommonMark, as GitHub renders the lessons
 REPO = "https://github.com/sabaazdn73/open-structural-bim-course/blob/main/"
 TREE = "https://github.com/sabaazdn73/open-structural-bim-course/tree/main/"
 
@@ -101,8 +102,25 @@ def md(text, src):
         base = TREE if target.endswith("/") else REPO
         return f"[{label}]({base}{path.rstrip('/')})"
     text = re.sub(r"(?<!!)\[([^\]]+)\]\(([^)\s]+)\)", link, text)
-    html = markdown.markdown(text, extensions=["fenced_code", "tables", "sane_lists"])
-    return html.replace("<a href=\"http", "<a target=\"_blank\" rel=\"noopener\" href=\"http")
+    html = MD.render(text)
+    # A dataset named in the steps (datasets/architect_model.ifc) links to its download in the panel.
+    names = "|".join(re.escape(n) for n, _ in DATASETS)
+    html = re.sub(rf"<code>datasets/({names})</code>", r'<a href="files/\1" download><code>datasets/\1</code></a>', html)
+    html = re.sub(r'<a href="(files/[^"]+\.(?:ifc|csv))">', r'<a href="\1" download>', html)
+    html = html.replace("<a href=\"http", "<a target=\"_blank\" rel=\"noopener\" href=\"http")
+    # Code that spans lines must be a block, or a copied script loses its line breaks.
+    for m in re.finditer(r"<code>(.*?)</code>", re.sub(r"<pre>.*?</pre>", "", html, flags=re.S), re.S):
+        if "\n" in m.group(1):
+            raise SystemExit(f"{src}: inline code spans lines (a code fence that did not render as a block)")
+    return html
+
+
+def inline(text):
+    """One paragraph of lesson text, without its <p> wrapper."""
+    html = md(text, "course/x.md").strip()
+    if not (html.startswith("<p>") and html.endswith("</p>")) or html.count("<p>") != 1:
+        raise SystemExit(f"expected one paragraph: {text[:60]}")
+    return html[3:-4]
 
 
 def steps(tool, eid):
@@ -141,8 +159,8 @@ def build_course():
         d = L[eid]
         ex[eid] = {
             "title": d["title"],
-            "goal": md(d["goal"], "course/x.md").removeprefix("<p>").removesuffix("</p>"),
-            "build": [md(b, "course/x.md").removeprefix("<p>").removesuffix("</p>") for b in d["build"]],
+            "goal": inline(d["goal"]),
+            "build": [inline(b) for b in d["build"]],
             "why": md(d["why"], "course/x.md"),
             "save": {"7.2": "option_A.ifc and option_B.ifc", "7.3": "a Git repository"}.get(eid, d["save"]),
             "check": d["check"],
