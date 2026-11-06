@@ -156,14 +156,14 @@ def footing_detail(s, ox, oy, k):
 
 def write_brief_drawings():
     out = os.path.join(ROOT, "brief", "drawings")
-    s = SVG(1100, 820, "TB-01 brief: Level 1 framing plan")
-    plan(s, 180, 640, 36)
+    s = SVG(1100, 860, "TB-01 brief: Level 1 framing plan")
+    plan(s, 180, 690, 36)
     s.save(os.path.join(out, "TB-01_brief_level1_framing_plan.svg"))
-    s = SVG(1100, 520, "TB-01 brief: section through grid 2")
-    section(s, 160, 330, 40)
+    s = SVG(1100, 460, "TB-01 brief: section through grid 2")
+    section(s, 160, 310, 40)
     s.save(os.path.join(out, "TB-01_brief_section_grid2.svg"))
-    s = SVG(900, 520, "TB-01 brief: foundation plan")
-    k, ox, oy = 30, 140, 470
+    s = SVG(900, 640, "TB-01 brief: foundation plan")
+    k, ox, oy = 26, 140, 500
     X = lambda x: ox + x * k   # noqa: E731
     Y = lambda y: oy - y * k   # noqa: E731
     f, c = spec.FOOTING, spec.PILE_CAP
@@ -182,8 +182,9 @@ def write_brief_drawings():
     for (x, y) in spec.pile_centres():
         s.add(f'<circle cx="{X(x):.1f}" cy="{Y(y):.1f}" r="{0.3*k:.1f}" fill="white" stroke="{INK}"/>')
     s.text(X(c["cx"]), Y(c["cy"]) + 4, "PC-1", 9)
-    s.text(450, 30, "FOUNDATION PLAN: pads 1800 x 1800 x 600 (top -0.600); pile cap 4000 x 4000 x 1000 (top -0.600);"
-                    " 4 piles Ø600, 12 m long", 10)
+    s.text(X(9), Y(-2.8), "FOUNDATION PLAN", 13, weight="bold")
+    s.text(X(9), Y(-2.8) + 16, "Pads 1800 x 1800 x 600, top -0.600. Pile cap PC-1 4000 x 4000 x 1000, top -0.600. "
+                               "4 piles Ø600, 12 m long.", 9, color=NOTE)
     s.save(os.path.join(out, "TB-01_brief_foundation_plan.svg"))
     return out
 
