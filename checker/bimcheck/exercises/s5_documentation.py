@@ -12,11 +12,29 @@ from ..core import Model, Result, norm
 from . import exercise
 
 
+def _parse_svg(path):
+    """Parse an SVG file. Some exporters (FreeCAD's 'Flattened SVG') use attribute prefixes such as
+    freecad:skip without declaring them; declare the missing prefixes so the file can be read."""
+    try:
+        return ET.parse(path)
+    except ET.ParseError:
+        with open(path, encoding="utf-8", errors="replace") as fh:
+            src = fh.read()
+        m = re.search(r"<svg\b[^>]*>", src)
+        if not m:
+            raise
+        declared = set(re.findall(r"xmlns:([A-Za-z_][\w.-]*)=", src))
+        used = set(re.findall(r"[\s<]([A-Za-z_][\w.-]*):[A-Za-z_][\w.-]*\s*=", src)) - {"xml", "xmlns"}
+        extra = "".join(f' xmlns:{p}="urn:undeclared:{p}"' for p in sorted(used - declared))
+        src = src[:m.end() - 1] + extra + src[m.end() - 1:]
+        return ET.ElementTree(ET.fromstring(src.encode("utf-8")))
+
+
 def read_text(path):
     """All text in an SVG or PDF drawing, as one string with tokens separated by spaces."""
     p = path.lower()
     if p.endswith(".svg"):
-        tree = ET.parse(path)
+        tree = _parse_svg(path)
         parts = []
         for el in tree.iter():
             tag = el.tag.split("}")[-1]
@@ -95,8 +113,12 @@ def ex_5_3(path):
 
 def _class_of(row_text):
     t = row_text.lower()
+    for cls in ("IfcColumn", "IfcBeam", "IfcSlab", "IfcWall", "IfcFooting", "IfcPile"):   # an IFC class name wins
+        if cls.lower() in t.replace(" ", ""):
+            return cls
     for key, cls in (("column", "IfcColumn"), ("beam", "IfcBeam"), ("slab", "IfcSlab"), ("wall", "IfcWall"),
-                     ("pile", "IfcPile"), ("footing", "IfcFooting"), ("foundation", "IfcFooting")):
+                     ("footing", "IfcFooting"), ("pile cap", "IfcFooting"), ("foundation", "IfcFooting"),
+                     ("pile", "IfcPile")):
         if key in t:
             return cls
     return None

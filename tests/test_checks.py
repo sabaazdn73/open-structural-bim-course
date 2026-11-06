@@ -122,3 +122,128 @@ def test_levels_wrong_elevation(tmp_path):
 def test_every_exercise_is_tested():
     tested = set(POSITIVE) | {"5.4", "7.3"}
     assert tested == set(REGISTRY)
+
+
+# ---- checker changes for FreeCAD output: each relaxation still fails a wrong model -------------------
+
+def test_storey_without_elevation_or_placement(tmp_path):
+    """FreeCAD writes a level at +0.000 with neither Elevation nor ObjectPlacement: read as 0.0."""
+    import ifcopenshell
+    f = ifcopenshell.open(ref("tb01_s1.ifc"))
+    for st in f.by_type("IfcBuildingStorey"):
+        if st.Name == "Level 0":
+            st.Elevation, st.ObjectPlacement = None, None
+    good = tmp_path / "level0_bare.ifc"
+    f.write(str(good))
+    assert run("1.2", str(good)).passed
+    for st in f.by_type("IfcBuildingStorey"):
+        if st.Name == "Level 1":
+            st.Elevation, st.ObjectPlacement = None, None
+    bad = tmp_path / "level1_bare.ifc"
+    f.write(str(bad))
+    assert not run("1.2", str(bad)).passed
+
+
+def test_stair_ending_one_riser_below_level(tmp_path):
+    """A flight whose top tread is one riser below Level 1 passes only if it stores the full riser count."""
+    import ifcopenshell
+    import ifcopenshell.api
+    f = ifcopenshell.open(ref("tb01_s3.ifc"))
+    st = f.by_type("IfcStairFlight")[0]
+    loc = st.ObjectPlacement.RelativePlacement.Location
+    loc.Coordinates = (loc.Coordinates[0], loc.Coordinates[1], loc.Coordinates[2] - 0.18)
+    good = tmp_path / "stair_low.ifc"
+    f.write(str(good))
+    assert run("3.1", str(good)).passed
+    for rel in list(st.IsDefinedBy):
+        if rel.RelatingPropertyDefinition.Name == "Pset_StairFlightCommon":
+            ifcopenshell.api.run("pset.remove_pset", f, product=st, pset=rel.RelatingPropertyDefinition)
+    bad = tmp_path / "stair_low_no_count.ifc"
+    f.write(str(bad))
+    assert not run("3.1", str(bad)).passed
+
+
+def test_predefined_type_from_the_type_object(tmp_path):
+    """An occurrence may leave PredefinedType empty and inherit it from its type."""
+    import ifcopenshell
+    import ifcopenshell.util.element as ue
+    f = ifcopenshell.open(ref("tb01_s4.ifc"))
+    pads = [e for e in f.by_type("IfcFooting") if e.Name.startswith("F-")]
+    for e in pads:
+        e.PredefinedType = None
+    ue.get_type(pads[0]).PredefinedType = "PAD_FOOTING"
+    good = tmp_path / "pad_from_type.ifc"
+    f.write(str(good))
+    assert run("3.2", str(good)).passed
+    ue.get_type(pads[0]).PredefinedType = "STRIP_FOOTING"
+    bad = tmp_path / "strip_from_type.ifc"
+    f.write(str(bad))
+    assert not run("3.2", str(bad)).passed
+
+
+def test_svg_with_undeclared_prefix(tmp_path):
+    """FreeCAD's 'Flattened SVG' writes freecad:... attributes without declaring the prefix."""
+    src = open(os.path.join(FIX, "plan.svg"), encoding="utf-8").read()
+    p = tmp_path / "plan_freecad.svg"
+    p.write_text(src.replace("<text ", '<text freecad:skip="1" ', 1), encoding="utf-8")
+    assert run("5.1", str(p)).passed
+    q = tmp_path / "detail_freecad.svg"
+    q.write_text(open(os.path.join(FIX, "detail.svg"), encoding="utf-8").read()
+                 .replace("<text ", '<text freecad:skip="1" ', 1), encoding="utf-8")
+    assert not run("5.1", str(q)).passed
+
+
+def test_status_as_enumerated_value(tmp_path):
+    import ifcopenshell
+    f = ifcopenshell.open(ref("renovation_answer.ifc"))
+    enum = f.create_entity("IfcPropertyEnumeration", Name="PEnum_ElementStatus",
+                           EnumerationValues=[f.createIfcLabel(v) for v in ("NEW", "EXISTING", "DEMOLISH", "TEMPORARY")])
+    for p in [p for p in f.by_type("IfcPropertySingleValue") if p.Name == "Status"]:
+        val = p.NominalValue.wrappedValue
+        new = f.create_entity("IfcPropertyEnumeratedValue", Name="Status", EnumerationValues=[f.createIfcLabel(val)],
+                              EnumerationReference=enum)
+        for ps in f.get_inverse(p):
+            ps.HasProperties = [new if x == p else x for x in ps.HasProperties]
+    out = tmp_path / "enum.ifc"
+    f.write(str(out))
+    assert run("7.1", str(out)).passed
+
+
+def _frame_with_core(tmp_path, mitred, column_top=None):
+    sys.path.insert(0, os.path.join(ROOT, "solutions", "bonsai_path"))
+    from tb01 import build, run as api
+    from bimcheck import spec
+    m = build("s2")
+    if column_top:
+        for c in m.columns.values():
+            c.Representation.Representations[0].Items[0].Depth = column_top
+    if mitred:
+        c, t = spec.CORE, spec.CORE["t"]
+        for w in m.walls.values():
+            api("root.remove_product", m.f, product=w)
+        x0, y0, x1, y1 = c["x0"], c["y0"], c["x1"], c["y1"]
+        outer = [(x0, y0), (x1, y0), (x1, y1), (x0, y1)]
+        inner = [(x0 + t, y0 + t), (x1 - t, y0 + t), (x1 - t, y1 - t), (x0 + t, y1 - t)]
+        for i in range(4):
+            j = (i + 1) % 4
+            pts = [outer[i], outer[j], inner[j], inner[i]]
+            w = api("root.create_entity", m.f, ifc_class="IfcWall", name=f"W-Mitre-{i}")
+            prof = m.f.create_entity("IfcArbitraryClosedProfileDef", ProfileType="AREA", OuterCurve=m.f.create_entity(
+                "IfcPolyline", Points=[m.f.createIfcCartesianPoint(p) for p in pts + [pts[0]]]))
+            rep = api("geometry.add_profile_representation", m.f, context=m.body, profile=prof, depth=c["z1"],
+                      cardinal_point=None)
+            api("geometry.assign_representation", m.f, product=w, representation=rep)
+            api("geometry.edit_object_placement", m.f, product=w)
+            api("spatial.assign_container", m.f, relating_structure=m.storeys["Level 0"], products=[w])
+    out = tmp_path / "frame.ifc"
+    m.f.write(str(out))
+    return str(out)
+
+
+def test_mitred_core_corners_are_not_overlaps(tmp_path):
+    res = run("2.5", _frame_with_core(tmp_path, mitred=True))
+    assert res.items[0].ok, res.items[0].hint
+
+
+def test_column_into_slab_is_an_overlap(tmp_path):
+    assert not run("2.5", _frame_with_core(tmp_path, mitred=False, column_top=3.6)).items[0].ok

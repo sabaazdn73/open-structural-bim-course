@@ -2,7 +2,7 @@
 import math
 
 from .. import spec
-from ..core import Model, Result, norm, same, fmt, match_by_position, has_material, plan_center
+from ..core import Model, Result, norm, same, fmt, match_by_position, has_material, plan_center, predefined_type
 from . import exercise
 from .s2_structure import _in_storey
 
@@ -23,12 +23,17 @@ def ex_3_1(path):
             f"Stair width {st['x1']-st['x0']:.2f} m between x {st['x0']} and {st['x1']}", f"found x {fmt(x0)} to {fmt(x1)}")
     r.check(abs(y0 - st["y0"]) <= 0.05 and st["y1"] - 0.15 <= y1 <= 6.4 + 0.01,
             f"Stair starts at y {st['y0']} and lands inside the slab opening (y up to 6.4)", f"found y {fmt(y0)} to {fmt(y1)}")
-    r.check(abs(z1 - st["z1"]) <= 0.03, f"Stair rises to Level 1 ({st['z1']:+.3f})", f"top found at {fmt(z1)}")
-    r.check(z0 >= -0.30 and z0 <= 0.05, "Stair starts at Level 0", f"bottom found at {fmt(z0)}")
     n = h = None
     for e in parts:
         n = n or m.find_prop(e, "NumberOfRiser") or m.find_prop(e, "NumberOfRisers")
         h = h or m.find_prop(e, "RiserHeight")
+    top_ok = abs(z1 - st["z1"]) <= 0.03
+    if not top_ok and n is not None and int(n) == st["risers"]:
+        # Some programs (FreeCAD's Stairs tool) end the flight at its last tread: the last riser is the
+        # slab edge. Accepted only when the model says it has the full riser count.
+        top_ok = abs(z1 - (st["z1"] - (st["z1"] - st["z0"]) / int(n))) <= 0.03
+    r.check(top_ok, f"Stair rises to Level 1 ({st['z1']:+.3f})", f"top found at {fmt(z1)}")
+    r.check(z0 >= -0.30 and z0 <= 0.05, "Stair starts at Level 0", f"bottom found at {fmt(z0)}")
     if n is not None:
         r.check(int(n) == st["risers"], f"{st['risers']} risers", f"found {n}")
     if h is not None:
@@ -59,7 +64,7 @@ def ex_3_2(path):
         bb = m.bbox(el)
         if not (same(bb[3] - bb[0], f["size"]) and same(bb[4] - bb[1], f["size"]) and same(bb[2], f["z0"]) and same(bb[5], f["z1"])):
             bad.append(f"{mark}: {fmt(bb[3]-bb[0])}x{fmt(bb[4]-bb[1])}, z {fmt(bb[2])} to {fmt(bb[5])}")
-        if getattr(el, "PredefinedType", None) != "PAD_FOOTING":
+        if predefined_type(el) != "PAD_FOOTING":
             bad_type.append(mark)
         if norm(el.Name) != norm(mark):
             bad_name.append(f"{mark} named '{el.Name}'")
@@ -85,8 +90,8 @@ def ex_3_3(path):
         ok = all(abs(a - t) <= 0.02 for a, t in zip(bb, (c["cx"] - h, c["cy"] - h, c["z0"], c["cx"] + h, c["cy"] + h, c["z1"])))
         r.check(ok, f"Pile cap {c['size']} x {c['size']} x {c['t']} m centred on the core, top at {c['z1']:+.3f}",
                 f"found x {fmt(bb[0])}-{fmt(bb[3])}, y {fmt(bb[1])}-{fmt(bb[4])}, z {fmt(bb[2])}-{fmt(bb[5])}")
-        r.check(getattr(caps[0], "PredefinedType", None) == "PILE_CAP", "Pile cap type is PILE_CAP",
-                f"found {getattr(caps[0], 'PredefinedType', None)}")
+        r.check(predefined_type(caps[0]) == "PILE_CAP", "Pile cap type is PILE_CAP",
+                f"found {predefined_type(caps[0])}")
     piles = [e for e in m.elements("IfcPile") if m.bbox(e) is not None]
     r.check(len(piles) == 4, "Four piles (IfcPile)", f"found {len(piles)}")
     targets = {f"P{i+1}": xy for i, xy in enumerate(spec.pile_centres())}

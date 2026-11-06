@@ -66,7 +66,7 @@ Exercise 2.1: Columns
 ## Status and honesty notes
 
 - The checker and the reference answers are tested automatically (see `tests/`).
-- The FreeCAD steps were written against FreeCAD 1.1.3 and the Bonsai steps against the Bonsai 0.8 source code.
+- The FreeCAD steps were written for FreeCAD 1.1.3, the Bonsai steps for Bonsai 0.9 (the button names were also checked against 0.8.5).
   Some steps were run by script rather than clicked through in the interface; each lesson says so where it matters.
   If a step does not match what you see, please open an issue.
 - Where a program has no tool for something (for example, Bonsai has no reinforcement tool yet), the lesson

@@ -39,13 +39,13 @@ For drawings exported as PDF (sections 5 and 6), also install `pypdf`: `python -
 
 ## How the course works
 
-1. Read the [project brief](../brief/README.md) and look at its [drawings](../brief/drawings/). You will model this building, TB-01, a small two-bay reinforced concrete frame with a core.
+1. Read the [project brief](../brief/README.md) and look at its [drawings](../brief/drawings/). You will model this building, TB-01, a small reinforced concrete frame (three bays by two) with a stair and a core.
 2. Do the exercises in order. Each one builds on your model from the one before; most of them save to the same file, `tb01.ifc`.
 3. After each exercise, run the checker. It reads your IFC file (or your exported drawing) and tells you, line by line, what is right and what is not.
 4. Section 7 gives you some separate starting files in [`datasets/`](../datasets/).
 
 **FreeCAD users:** keep your work in a FreeCAD file (`tb01.FCStd`) and export it to `tb01.ifc` each time you want to check it.
-**Bonsai users:** Bonsai works directly in IFC, so your saved file is already `tb01.ifc`.
+**Bonsai users:** Bonsai works directly in IFC, so the file you save with **File > Save IFC Project** is already `tb01.ifc`.
 
 ## If you know Revit
 

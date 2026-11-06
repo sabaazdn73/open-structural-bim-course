@@ -14,6 +14,8 @@ STRUCTURAL = ("IfcColumn", "IfcBeam", "IfcSlab", "IfcWall", "IfcFooting", "IfcPi
 
 def _status(m, e):
     v = m.find_prop(e, "Status")
+    if isinstance(v, (list, tuple)):   # an enumerated value (as Bonsai's Status panel writes it)
+        v = v[0] if v else None
     return str(v).upper() if v is not None else None
 
 

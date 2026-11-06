@@ -168,6 +168,20 @@ def _overlap(a, b):
     return dx * dy * dz if dx > 0 and dy > 0 and dz > 0 else 0.0
 
 
+def _mesh_overlap(m, a, b, ba, bb, n=10):
+    """Approximate overlap volume of two solids: sample the intersection of their boxes."""
+    import numpy as np
+    from .s7_management import _points_in_mesh
+    lo = np.maximum(ba[:3], bb[:3])
+    hi = np.minimum(ba[3:], bb[3:])
+    axes = [np.linspace(lo[i], hi[i], n + 2)[1:-1] for i in range(3)]
+    pts = np.stack(np.meshgrid(*axes, indexing="ij"), -1).reshape(-1, 3) + np.array([1e-4, 2.3e-4, 3.1e-4])
+    va, fa = m.mesh(a)
+    vb, fb = m.mesh(b)
+    inside = _points_in_mesh(pts, va, fa) & _points_in_mesh(pts, vb, fb)
+    return inside.mean() * float(np.prod(hi - lo))
+
+
 def frame_volumes():
     c, b, w = spec.COLUMN, spec.BEAM, spec.CORE
     col = len(spec.column_marks()) * c["size"] ** 2 * (c["z1"] - c["z0"])
@@ -185,10 +199,9 @@ def ex_2_5(path):
     els = [(e, bb) for e, bb in els if bb[2] > -0.5 and bb[5] < 4.0]
     clashes = []
     for (a, ba), (b, bb) in itertools.combinations(els, 2):
-        if a.is_a("IfcSlab") or b.is_a("IfcSlab"):
-            ov = _overlap(ba, bb)  # slab bbox: fine here, nothing should sit inside the slab depth
-        else:
-            ov = _overlap(ba, bb)
+        ov = _overlap(ba, bb)
+        if ov > 0.001:   # the boxes overlap; measure the real overlap (mitred corners overlap only as boxes)
+            ov = _mesh_overlap(m, a, b, ba, bb)
         if ov > 0.001:
             clashes.append(f"{a.Name} / {b.Name}: {ov*1000:.0f} litres")
     r.check(not clashes, "No two elements overlap (beams stop at column faces, columns and walls stop at the soffit)",

@@ -128,7 +128,7 @@ L["3.2"] = dict(
     slug="3.2_pad_footings", title="Pad footings",
     goal="Place a pad footing under every column.",
     build=["1.8 x 1.8 x 0.6 m, centred under each column, top at -0.600, bottom at -1.200.",
-           "Footing type PAD_FOOTING, named F-A1 ... F-D3, in the Foundation level.",
+           "Footing type PAD_FOOTING (set on the footing or on its type), named F-A1 ... F-D3, in the Foundation level.",
            "The short column stubs between the footings and Level 0 are not part of this course."],
     why="Foundations are their own discipline in the model: their level, their concrete (C25/30 here) and their "
         "quantities are reported separately.",
@@ -137,7 +137,8 @@ L["3.2"] = dict(
 L["3.3"] = dict(
     slug="3.3_piles", title="Pile cap and piles under the core",
     goal="Support the core on a pile cap and four piles.",
-    build=["Pile cap PC-1: 4.0 x 4.0 x 1.0 m centred at x 9.0, y 10.5, top -0.600; footing type PILE_CAP.",
+    build=["Pile cap PC-1: 4.0 x 4.0 x 1.0 m centred at x 9.0, y 10.5, top -0.600; footing type PILE_CAP "
+           "(on the cap or on its type).",
            "Four piles (IfcPile), 600 mm diameter, 12 m long, at 1.2 m each way from the core centre, from the "
            "underside of the cap (-1.600) down to -13.600.",
            "Everything in the Foundation level."],
@@ -148,7 +149,8 @@ L["3.3"] = dict(
 
 L["3.4"] = dict(
     slug="3.4_reinforcement", title="Reinforcement: column C-A1 and footing F-A1",
-    goal="Reinforce one column and one footing with real bars.",
+    goal="Reinforce one column and one footing with real bars (with a short script if your program has no "
+         "reinforcement tool).",
     build=["Steel A500.",
            "Column C-A1: 8 vertical Ø16 bars (corners and mid-sides) over the column height; Ø8 links at 150 mm "
            "from 50 mm above Level 0; 30 mm nominal cover to the links (so the vertical bars are 38 mm from the faces).",
@@ -195,6 +197,8 @@ L["4.2"] = dict(
     goal="Create column types from a catalogue file, the open equivalent of a Revit type catalogue.",
     build=["Read `datasets/column_types.csv` (Name, Width_mm, Depth_mm).",
            "Create one IfcColumnType per row with that name. Store Width and Depth as type properties.",
+           "Neither FreeCAD nor Bonsai has a button that imports types from a CSV file, so this exercise uses a "
+           "short script, the way offices automate it.",
            "RC Column 400x400 is the type you made in 4.1: reuse it, do not duplicate it."],
     why="Offices keep their standard sections in catalogues so every project uses the same names and sizes. "
         "Loading types from a file is faster and less error-prone than typing them, and it is the kind of task "
@@ -215,7 +219,8 @@ L["4.3"] = dict(
 L["5.1"] = dict(
     slug="5.1_framing_plan", title="Level 1 framing plan with grids and dimensions",
     goal="Produce the Level 1 framing plan from the model and export it as SVG (or PDF).",
-    build=["A plan view of Level 1 showing the grid with its bubbles (A to D, 1 to 3), columns, beams and the slab openings.",
+    build=["A plan view of Level 1 showing the grid with its bubbles (A to D, 1 to 3), the columns and beams cut "
+           "just below the slab, and the slab openings where your plan cut shows them.",
            "Dimension the bays (6000 x 3 along X, 7000 x 2 along Y) and the overall sizes (18000 and 14000).",
            "Export as SVG (best) or PDF with text kept as text."],
     why="The drawing is still the legal document on most projects. A plan cut from the model stays right when the "
@@ -228,14 +233,14 @@ L["5.2"] = dict(
     build=["Section along grid 2 looking north, showing columns, beams, the slab and the footings.",
            "Level lines with names and elevations: Foundation -1.200, Level 0 +0.000, Level 1 +3.600.",
            "Grid bubbles A to D. Export as SVG or PDF."],
-    why="Sections show what plans hide: levels, depths and how elements stack. Level tags read their values from "
-        "the model, so they update when a level moves.",
+    why="Sections show what plans hide: levels, depths and how elements stack. Where your program has level tags, they "
+        "read their values from the model and update when a level moves; otherwise type them and check them.",
     check="python -m bimcheck 5.2 section.svg", save="section.svg")
 
 L["5.3"] = dict(
     slug="5.3_detail", title="Detail callout with annotation",
     goal="Make a detail of footing F-A1 with notes.",
-    build=["A callout (enlarged view) of footing F-A1 with the column above.",
+    build=["A detail view (a callout, or an enlarged section at 1:20) of footing F-A1 with the column above.",
            "Title **TYPICAL COLUMN FOOTING DETAIL**.",
            "Notes: concrete **C25/30**, steel **A500**, bottom mesh **Ø16 @ 150** each way, **50 mm cover**.",
            "Export as SVG or PDF."],
@@ -266,7 +271,8 @@ L["6.1"] = dict(
     slug="6.1_sheet", title="Sheet S-101 with a title block",
     goal="Place the framing plan on a sheet with a title block.",
     build=["Sheet number **S-101**, title **LEVEL 1 FRAMING PLAN**, scale **1:100**, project **TB-01 Training Building**.",
-           "Place the Level 1 framing plan on it.",
+           "Place the Level 1 framing plan on it. If your title block template has no field for the project "
+           "name, add it to the template.",
            "Export as SVG or PDF."],
     why="Sheets are what leaves the office. A title block filled from the model's data (project, sheet number, "
         "scale) avoids the classic error of an issue with last week's sheet number.",
@@ -277,7 +283,8 @@ L["6.2"] = dict(
     goal="Record two revisions on sheet S-101.",
     build=["Revision **A**, 'First issue', with a date.",
            "Revision **B**, 'Core walls revised', with a date.",
-           "Show them in a revision table on the sheet and export it again."],
+           "Show them in a revision table on the sheet (a revision schedule or a table placed on the sheet) and "
+           "export it again."],
     why="Revisions are the audit trail of a design. Contractors build from the latest revision; a missing or "
         "wrong revision is one of the most common causes of building from an old drawing.",
     check="python -m bimcheck 6.2 sheet.svg", save="sheet.svg")
@@ -323,7 +330,8 @@ L["7.4"] = dict(
     goal="Find and fix the problems in a model that looks fine.",
     build=["Open `datasets/unhealthy_model.ifc`.",
            "It has four problems: a duplicate column, an element that belongs to no level, an element without a "
-           "material, and an element without a name. Find them with your program's checking tools and fix them.",
+           "material, and an element without a name. Find them with your program's checking tools (or a short "
+           "script where it has none) and fix them.",
            "Save as fixed_model.ifc."],
     why="Revit lists these as warnings. Open tools let you run the same checks (and your own, written as IDS "
         "rules or scripts). A model with silent duplicates doubles concrete in the quantities and confuses "
@@ -338,6 +346,7 @@ L["7.5"] = dict(
            "Resolve each clash with an opening in the beam or wall, at least 25 mm clear of the duct on every side. "
            "Do not move the ducts: the MEP model is not yours.",
            "Keep openings local: each beam keeps at least 90% of its volume.",
+           "If your program has no clash tool, the lesson gives a short script that finds the clashes.",
            "Save as structure.ifc."],
     why="Clash detection is what Navisworks is used for, and it is the daily work of BIM coordinators "
         "(and, for example, of the BIM teams that model supports and anchors for MEP). Any opening in a beam "
@@ -349,7 +358,8 @@ L["7.6"] = dict(
     goal="Clean a model of everything it does not use.",
     build=["Open `datasets/bloated_model.ifc`.",
            "Remove unused types, materials and profiles, and empty groups. Keep the column types of the project "
-           "catalogue (4.2).",
+           "catalogue (4.2): a one-click 'purge all unused types' would delete them too, so remove the unused "
+           "types one by one.",
            "Save as purged_model.ifc."],
     why="Old types, test materials and empty groups pile up in every project. They make files bigger and, worse, "
         "end up in schedules and type lists that others rely on.",
@@ -371,7 +381,7 @@ L["7.8"] = dict(
     build=["Schema IFC4, SI units.",
            "Every element in a level.",
            "Base quantities (Qto_...BaseQuantities with the volume) on every column, beam, slab, wall and footing, "
-           "matching the geometry.",
+           "matching the geometry (with a short script if your program cannot calculate them).",
            "Save as tb01_issue.ifc."],
     why="The issued IFC is what the client, the contractor and the checker receive. Export settings decide "
         "whether quantities, properties and the spatial structure arrive intact.",

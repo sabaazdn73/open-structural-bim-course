@@ -181,7 +181,9 @@ class Model:
             return float(st.Elevation) * self.scale
         if st.ObjectPlacement is not None:
             return float(up.get_local_placement(st.ObjectPlacement)[2][3]) * self.scale
-        return None
+        # Neither an elevation nor a placement: the storey sits at the origin. FreeCAD writes a
+        # level at +0.000 this way (it leaves out attributes whose value is zero).
+        return 0.0
 
     def storeys(self):
         return {s.Name: self.storey_elevation(s) for s in self.by_type("IfcBuildingStorey")}
@@ -226,6 +228,15 @@ def match_by_position(model, elements, targets, tol=POS):
         if best is not None:
             used.add(best.id())
     return out
+
+
+def predefined_type(el):
+    """The element's predefined type, taken from its type object when the occurrence leaves it unset
+    (IFC lets the occurrence inherit it; ifcopenshell clears it on the occurrence when a typed type is assigned)."""
+    try:
+        return ue.get_predefined_type(el)
+    except Exception:
+        return getattr(el, "PredefinedType", None)
 
 
 def has_material(names, wanted):
