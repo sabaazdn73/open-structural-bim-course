@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>BIM Practice</title>
+<meta name="description" content="Free structural BIM practice: model the TB-01 building in FreeCAD or Bonsai, follow the steps, and check your IFC file in the browser.">
+<style>@font-face{font-family:'Hanken Grotesk';font-style:normal;font-display:swap;font-weight:100 900;src:url('/fonts/hanken-grotesk-latin-wght-normal.woff2') format('woff2-variations')}</style>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<a class="skip" href="#view">Skip to content</a>
+<header class="top">
+  <div class="top-in">
+    <div class="brand">
+      <p class="eyebrow"><span id="host"></span>Open Structural BIM Course</p>
+      <p class="title"><a href="#/start">BIM practice</a></p>
+    </div>
+    <nav class="top-links" aria-label="Site">
+      <a href="#/start">Start</a>
+      <a href="#/brief">Brief</a>
+      <a href="#/files">Files</a>
+      <a id="repo" target="_blank" rel="noopener" href="https://github.com/sabaazdn73/open-structural-bim-course">GitHub</a>
+      <button id="theme" class="btn ghost" type="button" aria-label="Switch between light and dark">Theme</button>
+    </nav>
+  </div>
+</header>
+<div class="layout">
+  <aside class="side" aria-label="Exercises">
+    <button id="menu" class="btn menu" type="button" aria-expanded="false" aria-controls="toc">Exercises</button>
+    <div class="progress" aria-live="polite"><div class="bar"><i id="bar"></i></div><span id="count"></span></div>
+    <nav id="toc"></nav>
+  </aside>
+  <main id="view" tabindex="-1"><p class="muted">Loading the course...</p></main>
+</div>
+<footer class="foot">
+  <p>Course text, brief and datasets CC BY 4.0, code MIT. Independent course, not affiliated with Autodesk, the FreeCAD project, the Bonsai project or the Blender Foundation. Your files are checked in your browser and are not uploaded.</p>
+</footer>
+<script src="app.js"></script>
+</body>
+</html>

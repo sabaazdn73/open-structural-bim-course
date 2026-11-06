@@ -1,5 +1,7 @@
 # Getting started
 
+**No terminal needed:** the [practice panel](https://www.tnega.app/bim/) has every exercise and checks your file in the browser. The steps below are for working from this repository on your own computer.
+
 ## What you need
 
 Everything in this course is free and open source.

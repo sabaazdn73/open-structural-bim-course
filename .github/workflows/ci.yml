@@ -8,10 +8,11 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.11"
-      - run: python -m pip install ./checker pytest pypdf
+      - run: python -m pip install ./checker pytest pypdf markdown==3.11
       - run: python tools/build_brief.py
       - run: python tools/build_datasets.py
       - run: python tools/build_lessons.py
+      - run: python tools/build_web.py
       - run: git config --global user.email ci@example.com && git config --global user.name CI
       - run: python -m pytest -q tests
-      - run: git diff --exit-code course brief tests/fixtures
+      - run: git diff --exit-code course brief tests/fixtures web

@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="460" viewBox="0 0 1100 460">
+<rect width="100%" height="100%" fill="white"/>
+<title>TB-01 brief: section through grid 2</title>
+<line x1="60.0" y1="358.0" x2="980.0" y2="358.0" stroke="#555" stroke-width="0.6" stroke-dasharray="6 3"/>
+<text x="988.0" y="355.0" font-size="10" text-anchor="start" fill="#1d1d1b" font-weight="normal" font-family="Helvetica, Arial, sans-serif">Foundation</text>
+<text x="988.0" y="368.0" font-size="9" text-anchor="start" fill="#555" font-weight="normal" font-family="Helvetica, Arial, sans-serif">-1.200</text>
+<line x1="60.0" y1="310.0" x2="980.0" y2="310.0" stroke="#555" stroke-width="0.6" stroke-dasharray="6 3"/>
+<text x="988.0" y="307.0" font-size="10" text-anchor="start" fill="#1d1d1b" font-weight="normal" font-family="Helvetica, Arial, sans-serif">Level 0</text>
+<text x="988.0" y="320.0" font-size="9" text-anchor="start" fill="#555" font-weight="normal" font-family="Helvetica, Arial, sans-serif">+0.000</text>
+<line x1="60.0" y1="166.0" x2="980.0" y2="166.0" stroke="#555" stroke-width="0.6" stroke-dasharray="6 3"/>
+<text x="988.0" y="163.0" font-size="10" text-anchor="start" fill="#1d1d1b" font-weight="normal" font-family="Helvetica, Arial, sans-serif">Level 1</text>
+<text x="988.0" y="176.0" font-size="9" text-anchor="start" fill="#555" font-weight="normal" font-family="Helvetica, Arial, sans-serif">+3.600</text>
+<rect x="152.0" y="166.0" width="736.0" height="10.0" fill="#bdbdbd" stroke="#1d1d1b" stroke-width="1"/>
+<rect x="152.0" y="176.0" width="16.0" height="134.0" fill="#bdbdbd" stroke="#1d1d1b" stroke-width="1"/>
+<rect x="124.0" y="334.0" width="72.0" height="24.0" fill="#d6d6d6" stroke="#1d1d1b" stroke-width="1"/>
+<line x1="160.0" y1="126.0" x2="160.0" y2="374.0" stroke="#c0392b" stroke-width="0.7" stroke-dasharray="12 4 2 4"/>
+<circle cx="160.0" cy="102.0" r="10" fill="white" stroke="#c0392b" stroke-width="1"/>
+<text x="160.0" y="106.0" font-size="11" text-anchor="middle" fill="#c0392b" font-weight="normal" font-family="Helvetica, Arial, sans-serif">A</text>
+<rect x="392.0" y="176.0" width="16.0" height="134.0" fill="#bdbdbd" stroke="#1d1d1b" stroke-width="1"/>
+<rect x="364.0" y="334.0" width="72.0" height="24.0" fill="#d6d6d6" stroke="#1d1d1b" stroke-width="1"/>
+<line x1="400.0" y1="126.0" x2="400.0" y2="374.0" stroke="#c0392b" stroke-width="0.7" stroke-dasharray="12 4 2 4"/>
+<circle cx="400.0" cy="102.0" r="10" fill="white" stroke="#c0392b" stroke-width="1"/>
+<text x="400.0" y="106.0" font-size="11" text-anchor="middle" fill="#c0392b" font-weight="normal" font-family="Helvetica, Arial, sans-serif">B</text>
+<rect x="632.0" y="176.0" width="16.0" height="134.0" fill="#bdbdbd" stroke="#1d1d1b" stroke-width="1"/>
+<rect x="604.0" y="334.0" width="72.0" height="24.0" fill="#d6d6d6" stroke="#1d1d1b" stroke-width="1"/>
+<line x1="640.0" y1="126.0" x2="640.0" y2="374.0" stroke="#c0392b" stroke-width="0.7" stroke-dasharray="12 4 2 4"/>
+<circle cx="640.0" cy="102.0" r="10" fill="white" stroke="#c0392b" stroke-width="1"/>
+<text x="640.0" y="106.0" font-size="11" text-anchor="middle" fill="#c0392b" font-weight="normal" font-family="Helvetica, Arial, sans-serif">C</text>
+<rect x="872.0" y="176.0" width="16.0" height="134.0" fill="#bdbdbd" stroke="#1d1d1b" stroke-width="1"/>
+<rect x="844.0" y="334.0" width="72.0" height="24.0" fill="#d6d6d6" stroke="#1d1d1b" stroke-width="1"/>
+<line x1="880.0" y1="126.0" x2="880.0" y2="374.0" stroke="#c0392b" stroke-width="0.7" stroke-dasharray="12 4 2 4"/>
+<circle cx="880.0" cy="102.0" r="10" fill="white" stroke="#c0392b" stroke-width="1"/>
+<text x="880.0" y="106.0" font-size="11" text-anchor="middle" fill="#c0392b" font-weight="normal" font-family="Helvetica, Arial, sans-serif">D</text>
+<rect x="168.0" y="176.0" width="224.0" height="14.0" fill="#bdbdbd" stroke="#1d1d1b" stroke-width="1"/>
+<rect x="408.0" y="176.0" width="224.0" height="14.0" fill="#bdbdbd" stroke="#1d1d1b" stroke-width="1"/>
+<rect x="648.0" y="176.0" width="224.0" height="14.0" fill="#bdbdbd" stroke="#1d1d1b" stroke-width="1"/>
+<text x="520.0" y="406.0" font-size="13" text-anchor="middle" fill="#1d1d1b" font-weight="bold" font-family="Helvetica, Arial, sans-serif">SECTION 2-2 (THROUGH GRID 2)</text>
+</svg>

@@ -1,0 +1,109 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="860" viewBox="0 0 1100 860">
+<rect width="100%" height="100%" fill="white"/>
+<title>TB-01 brief: Level 1 framing plan</title>
+<rect x="172.8" y="178.8" width="662.4" height="518.4" fill="none" stroke="#1d1d1b" stroke-width="1.2"/>
+<rect x="459.0" y="267.0" width="90.0" height="90.0" fill="none" stroke="#1d1d1b" stroke-width="0.8"/>
+<line x1="459.0" y1="357.0" x2="549.0" y2="267.0" stroke="#1d1d1b" stroke-width="0.6"/>
+<line x1="459.0" y1="267.0" x2="549.0" y2="357.0" stroke="#1d1d1b" stroke-width="0.6"/>
+<text x="504.0" y="326.0" font-size="8" text-anchor="middle" fill="#555" font-weight="normal" font-family="Helvetica, Arial, sans-serif">OPENING</text>
+<rect x="648.0" y="459.6" width="43.2" height="194.4" fill="none" stroke="#1d1d1b" stroke-width="0.8"/>
+<line x1="648.0" y1="654.0" x2="691.2" y2="459.6" stroke="#1d1d1b" stroke-width="0.6"/>
+<line x1="648.0" y1="459.6" x2="691.2" y2="654.0" stroke="#1d1d1b" stroke-width="0.6"/>
+<text x="669.6" y="570.8" font-size="8" text-anchor="middle" fill="#555" font-weight="normal" font-family="Helvetica, Arial, sans-serif">STAIR OPENING</text>
+<line x1="180.0" y1="128.4" x2="180.0" y2="747.6" stroke="#c0392b" stroke-width="0.7" stroke-dasharray="12 4 2 4"/>
+<circle cx="180.0" cy="106.8" r="10" fill="white" stroke="#c0392b" stroke-width="1"/>
+<text x="180.0" y="110.8" font-size="11" text-anchor="middle" fill="#c0392b" font-weight="normal" font-family="Helvetica, Arial, sans-serif">A</text>
+<line x1="396.0" y1="128.4" x2="396.0" y2="747.6" stroke="#c0392b" stroke-width="0.7" stroke-dasharray="12 4 2 4"/>
+<circle cx="396.0" cy="106.8" r="10" fill="white" stroke="#c0392b" stroke-width="1"/>
+<text x="396.0" y="110.8" font-size="11" text-anchor="middle" fill="#c0392b" font-weight="normal" font-family="Helvetica, Arial, sans-serif">B</text>
+<line x1="612.0" y1="128.4" x2="612.0" y2="747.6" stroke="#c0392b" stroke-width="0.7" stroke-dasharray="12 4 2 4"/>
+<circle cx="612.0" cy="106.8" r="10" fill="white" stroke="#c0392b" stroke-width="1"/>
+<text x="612.0" y="110.8" font-size="11" text-anchor="middle" fill="#c0392b" font-weight="normal" font-family="Helvetica, Arial, sans-serif">C</text>
+<line x1="828.0" y1="128.4" x2="828.0" y2="747.6" stroke="#c0392b" stroke-width="0.7" stroke-dasharray="12 4 2 4"/>
+<circle cx="828.0" cy="106.8" r="10" fill="white" stroke="#c0392b" stroke-width="1"/>
+<text x="828.0" y="110.8" font-size="11" text-anchor="middle" fill="#c0392b" font-weight="normal" font-family="Helvetica, Arial, sans-serif">D</text>
+<line x1="122.4" y1="690.0" x2="885.6" y2="690.0" stroke="#c0392b" stroke-width="0.7" stroke-dasharray="12 4 2 4"/>
+<circle cx="100.8" cy="690.0" r="10" fill="white" stroke="#c0392b" stroke-width="1"/>
+<text x="100.8" y="694.0" font-size="11" text-anchor="middle" fill="#c0392b" font-weight="normal" font-family="Helvetica, Arial, sans-serif">1</text>
+<line x1="122.4" y1="438.0" x2="885.6" y2="438.0" stroke="#c0392b" stroke-width="0.7" stroke-dasharray="12 4 2 4"/>
+<circle cx="100.8" cy="438.0" r="10" fill="white" stroke="#c0392b" stroke-width="1"/>
+<text x="100.8" y="442.0" font-size="11" text-anchor="middle" fill="#c0392b" font-weight="normal" font-family="Helvetica, Arial, sans-serif">2</text>
+<line x1="122.4" y1="186.0" x2="885.6" y2="186.0" stroke="#c0392b" stroke-width="0.7" stroke-dasharray="12 4 2 4"/>
+<circle cx="100.8" cy="186.0" r="10" fill="white" stroke="#c0392b" stroke-width="1"/>
+<text x="100.8" y="190.0" font-size="11" text-anchor="middle" fill="#c0392b" font-weight="normal" font-family="Helvetica, Arial, sans-serif">3</text>
+<rect x="187.2" y="684.6" width="201.6" height="10.8" fill="none" stroke="#2b2b2b" stroke-width="0.8" stroke-dasharray="4 3"/>
+<rect x="403.2" y="684.6" width="201.6" height="10.8" fill="none" stroke="#2b2b2b" stroke-width="0.8" stroke-dasharray="4 3"/>
+<rect x="619.2" y="684.6" width="201.6" height="10.8" fill="none" stroke="#2b2b2b" stroke-width="0.8" stroke-dasharray="4 3"/>
+<rect x="187.2" y="432.6" width="201.6" height="10.8" fill="none" stroke="#2b2b2b" stroke-width="0.8" stroke-dasharray="4 3"/>
+<rect x="403.2" y="432.6" width="201.6" height="10.8" fill="none" stroke="#2b2b2b" stroke-width="0.8" stroke-dasharray="4 3"/>
+<rect x="619.2" y="432.6" width="201.6" height="10.8" fill="none" stroke="#2b2b2b" stroke-width="0.8" stroke-dasharray="4 3"/>
+<rect x="187.2" y="180.6" width="201.6" height="10.8" fill="none" stroke="#2b2b2b" stroke-width="0.8" stroke-dasharray="4 3"/>
+<rect x="403.2" y="180.6" width="201.6" height="10.8" fill="none" stroke="#2b2b2b" stroke-width="0.8" stroke-dasharray="4 3"/>
+<rect x="619.2" y="180.6" width="201.6" height="10.8" fill="none" stroke="#2b2b2b" stroke-width="0.8" stroke-dasharray="4 3"/>
+<rect x="174.6" y="445.2" width="10.8" height="237.6" fill="none" stroke="#2b2b2b" stroke-width="0.8" stroke-dasharray="4 3"/>
+<rect x="174.6" y="193.2" width="10.8" height="237.6" fill="none" stroke="#2b2b2b" stroke-width="0.8" stroke-dasharray="4 3"/>
+<rect x="390.6" y="445.2" width="10.8" height="237.6" fill="none" stroke="#2b2b2b" stroke-width="0.8" stroke-dasharray="4 3"/>
+<rect x="390.6" y="193.2" width="10.8" height="237.6" fill="none" stroke="#2b2b2b" stroke-width="0.8" stroke-dasharray="4 3"/>
+<rect x="606.6" y="445.2" width="10.8" height="237.6" fill="none" stroke="#2b2b2b" stroke-width="0.8" stroke-dasharray="4 3"/>
+<rect x="606.6" y="193.2" width="10.8" height="237.6" fill="none" stroke="#2b2b2b" stroke-width="0.8" stroke-dasharray="4 3"/>
+<rect x="822.6" y="445.2" width="10.8" height="237.6" fill="none" stroke="#2b2b2b" stroke-width="0.8" stroke-dasharray="4 3"/>
+<rect x="822.6" y="193.2" width="10.8" height="237.6" fill="none" stroke="#2b2b2b" stroke-width="0.8" stroke-dasharray="4 3"/>
+<rect x="172.8" y="682.8" width="14.4" height="14.4" fill="#9a9a9a" stroke="#1d1d1b" stroke-width="1"/>
+<text x="196.0" y="681.0" font-size="8" text-anchor="start" fill="#1d1d1b" font-weight="normal" font-family="Helvetica, Arial, sans-serif">C-A1</text>
+<rect x="172.8" y="430.8" width="14.4" height="14.4" fill="#9a9a9a" stroke="#1d1d1b" stroke-width="1"/>
+<text x="196.0" y="429.0" font-size="8" text-anchor="start" fill="#1d1d1b" font-weight="normal" font-family="Helvetica, Arial, sans-serif">C-A2</text>
+<rect x="172.8" y="178.8" width="14.4" height="14.4" fill="#9a9a9a" stroke="#1d1d1b" stroke-width="1"/>
+<text x="196.0" y="177.0" font-size="8" text-anchor="start" fill="#1d1d1b" font-weight="normal" font-family="Helvetica, Arial, sans-serif">C-A3</text>
+<rect x="388.8" y="682.8" width="14.4" height="14.4" fill="#9a9a9a" stroke="#1d1d1b" stroke-width="1"/>
+<text x="412.0" y="681.0" font-size="8" text-anchor="start" fill="#1d1d1b" font-weight="normal" font-family="Helvetica, Arial, sans-serif">C-B1</text>
+<rect x="388.8" y="430.8" width="14.4" height="14.4" fill="#9a9a9a" stroke="#1d1d1b" stroke-width="1"/>
+<text x="412.0" y="429.0" font-size="8" text-anchor="start" fill="#1d1d1b" font-weight="normal" font-family="Helvetica, Arial, sans-serif">C-B2</text>
+<rect x="388.8" y="178.8" width="14.4" height="14.4" fill="#9a9a9a" stroke="#1d1d1b" stroke-width="1"/>
+<text x="412.0" y="177.0" font-size="8" text-anchor="start" fill="#1d1d1b" font-weight="normal" font-family="Helvetica, Arial, sans-serif">C-B3</text>
+<rect x="604.8" y="682.8" width="14.4" height="14.4" fill="#9a9a9a" stroke="#1d1d1b" stroke-width="1"/>
+<text x="628.0" y="681.0" font-size="8" text-anchor="start" fill="#1d1d1b" font-weight="normal" font-family="Helvetica, Arial, sans-serif">C-C1</text>
+<rect x="604.8" y="430.8" width="14.4" height="14.4" fill="#9a9a9a" stroke="#1d1d1b" stroke-width="1"/>
+<text x="628.0" y="429.0" font-size="8" text-anchor="start" fill="#1d1d1b" font-weight="normal" font-family="Helvetica, Arial, sans-serif">C-C2</text>
+<rect x="604.8" y="178.8" width="14.4" height="14.4" fill="#9a9a9a" stroke="#1d1d1b" stroke-width="1"/>
+<text x="628.0" y="177.0" font-size="8" text-anchor="start" fill="#1d1d1b" font-weight="normal" font-family="Helvetica, Arial, sans-serif">C-C3</text>
+<rect x="820.8" y="682.8" width="14.4" height="14.4" fill="#9a9a9a" stroke="#1d1d1b" stroke-width="1"/>
+<text x="844.0" y="681.0" font-size="8" text-anchor="start" fill="#1d1d1b" font-weight="normal" font-family="Helvetica, Arial, sans-serif">C-D1</text>
+<rect x="820.8" y="430.8" width="14.4" height="14.4" fill="#9a9a9a" stroke="#1d1d1b" stroke-width="1"/>
+<text x="844.0" y="429.0" font-size="8" text-anchor="start" fill="#1d1d1b" font-weight="normal" font-family="Helvetica, Arial, sans-serif">C-D2</text>
+<rect x="820.8" y="178.8" width="14.4" height="14.4" fill="#9a9a9a" stroke="#1d1d1b" stroke-width="1"/>
+<text x="844.0" y="177.0" font-size="8" text-anchor="start" fill="#1d1d1b" font-weight="normal" font-family="Helvetica, Arial, sans-serif">C-D3</text>
+<rect x="450.0" y="357.0" width="108.0" height="9.0" fill="#9a9a9a" stroke="#1d1d1b" stroke-width="1"/>
+<rect x="450.0" y="258.0" width="108.0" height="9.0" fill="#9a9a9a" stroke="#1d1d1b" stroke-width="1"/>
+<rect x="450.0" y="267.0" width="9.0" height="90.0" fill="#9a9a9a" stroke="#1d1d1b" stroke-width="1"/>
+<rect x="549.0" y="267.0" width="9.0" height="90.0" fill="#9a9a9a" stroke="#1d1d1b" stroke-width="1"/>
+<line x1="180.0" y1="81.6" x2="396.0" y2="81.6" stroke="#555" stroke-width="0.8"/>
+<line x1="176.0" y1="85.6" x2="184.0" y2="77.6" stroke="#555" stroke-width="0.8"/>
+<line x1="392.0" y1="85.6" x2="400.0" y2="77.6" stroke="#555" stroke-width="0.8"/>
+<text x="288.0" y="77.6" font-size="10" text-anchor="middle" fill="#555" font-weight="normal" font-family="Helvetica, Arial, sans-serif">6000</text>
+<line x1="396.0" y1="81.6" x2="612.0" y2="81.6" stroke="#555" stroke-width="0.8"/>
+<line x1="392.0" y1="85.6" x2="400.0" y2="77.6" stroke="#555" stroke-width="0.8"/>
+<line x1="608.0" y1="85.6" x2="616.0" y2="77.6" stroke="#555" stroke-width="0.8"/>
+<text x="504.0" y="77.6" font-size="10" text-anchor="middle" fill="#555" font-weight="normal" font-family="Helvetica, Arial, sans-serif">6000</text>
+<line x1="612.0" y1="81.6" x2="828.0" y2="81.6" stroke="#555" stroke-width="0.8"/>
+<line x1="608.0" y1="85.6" x2="616.0" y2="77.6" stroke="#555" stroke-width="0.8"/>
+<line x1="824.0" y1="85.6" x2="832.0" y2="77.6" stroke="#555" stroke-width="0.8"/>
+<text x="720.0" y="77.6" font-size="10" text-anchor="middle" fill="#555" font-weight="normal" font-family="Helvetica, Arial, sans-serif">6000</text>
+<line x1="180.0" y1="59.6" x2="828.0" y2="59.6" stroke="#555" stroke-width="0.8"/>
+<line x1="176.0" y1="63.6" x2="184.0" y2="55.6" stroke="#555" stroke-width="0.8"/>
+<line x1="824.0" y1="63.6" x2="832.0" y2="55.6" stroke="#555" stroke-width="0.8"/>
+<text x="504.0" y="55.6" font-size="10" text-anchor="middle" fill="#555" font-weight="normal" font-family="Helvetica, Arial, sans-serif">18000</text>
+<line x1="72.0" y1="690.0" x2="72.0" y2="438.0" stroke="#555" stroke-width="0.8"/>
+<line x1="68.0" y1="694.0" x2="76.0" y2="686.0" stroke="#555" stroke-width="0.8"/>
+<line x1="68.0" y1="442.0" x2="76.0" y2="434.0" stroke="#555" stroke-width="0.8"/>
+<text x="66.0" y="564.0" font-size="10" text-anchor="middle" fill="#555" font-family="Helvetica, Arial, sans-serif" transform="rotate(-90 66.0 564.0)">7000</text>
+<line x1="72.0" y1="438.0" x2="72.0" y2="186.0" stroke="#555" stroke-width="0.8"/>
+<line x1="68.0" y1="442.0" x2="76.0" y2="434.0" stroke="#555" stroke-width="0.8"/>
+<line x1="68.0" y1="190.0" x2="76.0" y2="182.0" stroke="#555" stroke-width="0.8"/>
+<text x="66.0" y="312.0" font-size="10" text-anchor="middle" fill="#555" font-family="Helvetica, Arial, sans-serif" transform="rotate(-90 66.0 312.0)">7000</text>
+<line x1="50.0" y1="690.0" x2="50.0" y2="186.0" stroke="#555" stroke-width="0.8"/>
+<line x1="46.0" y1="694.0" x2="54.0" y2="686.0" stroke="#555" stroke-width="0.8"/>
+<line x1="46.0" y1="190.0" x2="54.0" y2="182.0" stroke="#555" stroke-width="0.8"/>
+<text x="44.0" y="438.0" font-size="10" text-anchor="middle" fill="#555" font-family="Helvetica, Arial, sans-serif" transform="rotate(-90 44.0 438.0)">14000</text>
+<text x="504.0" y="783.6" font-size="13" text-anchor="middle" fill="#1d1d1b" font-weight="bold" font-family="Helvetica, Arial, sans-serif">LEVEL 1 FRAMING PLAN</text>
+<text x="504.0" y="798.6" font-size="9" text-anchor="middle" fill="#555" font-weight="normal" font-family="Helvetica, Arial, sans-serif">Slab 250 mm, top +3.600. Beams 300 x 350 downstand (dashed). Columns 400 x 400.</text>
+</svg>

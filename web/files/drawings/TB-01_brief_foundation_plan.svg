@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="640" viewBox="0 0 900 640">
+<rect width="100%" height="100%" fill="white"/>
+<title>TB-01 brief: foundation plan</title>
+<line x1="140.0" y1="94.4" x2="140.0" y2="541.6" stroke="#c0392b" stroke-width="0.7" stroke-dasharray="12 4 2 4"/>
+<circle cx="140.0" cy="78.8" r="10" fill="white" stroke="#c0392b" stroke-width="1"/>
+<text x="140.0" y="82.8" font-size="11" text-anchor="middle" fill="#c0392b" font-weight="normal" font-family="Helvetica, Arial, sans-serif">A</text>
+<line x1="296.0" y1="94.4" x2="296.0" y2="541.6" stroke="#c0392b" stroke-width="0.7" stroke-dasharray="12 4 2 4"/>
+<circle cx="296.0" cy="78.8" r="10" fill="white" stroke="#c0392b" stroke-width="1"/>
+<text x="296.0" y="82.8" font-size="11" text-anchor="middle" fill="#c0392b" font-weight="normal" font-family="Helvetica, Arial, sans-serif">B</text>
+<line x1="452.0" y1="94.4" x2="452.0" y2="541.6" stroke="#c0392b" stroke-width="0.7" stroke-dasharray="12 4 2 4"/>
+<circle cx="452.0" cy="78.8" r="10" fill="white" stroke="#c0392b" stroke-width="1"/>
+<text x="452.0" y="82.8" font-size="11" text-anchor="middle" fill="#c0392b" font-weight="normal" font-family="Helvetica, Arial, sans-serif">C</text>
+<line x1="608.0" y1="94.4" x2="608.0" y2="541.6" stroke="#c0392b" stroke-width="0.7" stroke-dasharray="12 4 2 4"/>
+<circle cx="608.0" cy="78.8" r="10" fill="white" stroke="#c0392b" stroke-width="1"/>
+<text x="608.0" y="82.8" font-size="11" text-anchor="middle" fill="#c0392b" font-weight="normal" font-family="Helvetica, Arial, sans-serif">D</text>
+<line x1="98.4" y1="500.0" x2="649.6" y2="500.0" stroke="#c0392b" stroke-width="0.7" stroke-dasharray="12 4 2 4"/>
+<circle cx="82.8" cy="500.0" r="10" fill="white" stroke="#c0392b" stroke-width="1"/>
+<text x="82.8" y="504.0" font-size="11" text-anchor="middle" fill="#c0392b" font-weight="normal" font-family="Helvetica, Arial, sans-serif">1</text>
+<line x1="98.4" y1="318.0" x2="649.6" y2="318.0" stroke="#c0392b" stroke-width="0.7" stroke-dasharray="12 4 2 4"/>
+<circle cx="82.8" cy="318.0" r="10" fill="white" stroke="#c0392b" stroke-width="1"/>
+<text x="82.8" y="322.0" font-size="11" text-anchor="middle" fill="#c0392b" font-weight="normal" font-family="Helvetica, Arial, sans-serif">2</text>
+<line x1="98.4" y1="136.0" x2="649.6" y2="136.0" stroke="#c0392b" stroke-width="0.7" stroke-dasharray="12 4 2 4"/>
+<circle cx="82.8" cy="136.0" r="10" fill="white" stroke="#c0392b" stroke-width="1"/>
+<text x="82.8" y="140.0" font-size="11" text-anchor="middle" fill="#c0392b" font-weight="normal" font-family="Helvetica, Arial, sans-serif">3</text>
+<rect x="116.6" y="476.6" width="46.8" height="46.8" fill="#e6e6e6" stroke="#1d1d1b" stroke-width="1"/>
+<text x="140.0" y="470.0" font-size="8" text-anchor="middle" fill="#1d1d1b" font-weight="normal" font-family="Helvetica, Arial, sans-serif">F-A1</text>
+<rect x="116.6" y="294.6" width="46.8" height="46.8" fill="#e6e6e6" stroke="#1d1d1b" stroke-width="1"/>
+<text x="140.0" y="288.0" font-size="8" text-anchor="middle" fill="#1d1d1b" font-weight="normal" font-family="Helvetica, Arial, sans-serif">F-A2</text>
+<rect x="116.6" y="112.6" width="46.8" height="46.8" fill="#e6e6e6" stroke="#1d1d1b" stroke-width="1"/>
+<text x="140.0" y="106.0" font-size="8" text-anchor="middle" fill="#1d1d1b" font-weight="normal" font-family="Helvetica, Arial, sans-serif">F-A3</text>
+<rect x="272.6" y="476.6" width="46.8" height="46.8" fill="#e6e6e6" stroke="#1d1d1b" stroke-width="1"/>
+<text x="296.0" y="470.0" font-size="8" text-anchor="middle" fill="#1d1d1b" font-weight="normal" font-family="Helvetica, Arial, sans-serif">F-B1</text>
+<rect x="272.6" y="294.6" width="46.8" height="46.8" fill="#e6e6e6" stroke="#1d1d1b" stroke-width="1"/>
+<text x="296.0" y="288.0" font-size="8" text-anchor="middle" fill="#1d1d1b" font-weight="normal" font-family="Helvetica, Arial, sans-serif">F-B2</text>
+<rect x="272.6" y="112.6" width="46.8" height="46.8" fill="#e6e6e6" stroke="#1d1d1b" stroke-width="1"/>
+<text x="296.0" y="106.0" font-size="8" text-anchor="middle" fill="#1d1d1b" font-weight="normal" font-family="Helvetica, Arial, sans-serif">F-B3</text>
+<rect x="428.6" y="476.6" width="46.8" height="46.8" fill="#e6e6e6" stroke="#1d1d1b" stroke-width="1"/>
+<text x="452.0" y="470.0" font-size="8" text-anchor="middle" fill="#1d1d1b" font-weight="normal" font-family="Helvetica, Arial, sans-serif">F-C1</text>
+<rect x="428.6" y="294.6" width="46.8" height="46.8" fill="#e6e6e6" stroke="#1d1d1b" stroke-width="1"/>
+<text x="452.0" y="288.0" font-size="8" text-anchor="middle" fill="#1d1d1b" font-weight="normal" font-family="Helvetica, Arial, sans-serif">F-C2</text>
+<rect x="428.6" y="112.6" width="46.8" height="46.8" fill="#e6e6e6" stroke="#1d1d1b" stroke-width="1"/>
+<text x="452.0" y="106.0" font-size="8" text-anchor="middle" fill="#1d1d1b" font-weight="normal" font-family="Helvetica, Arial, sans-serif">F-C3</text>
+<rect x="584.6" y="476.6" width="46.8" height="46.8" fill="#e6e6e6" stroke="#1d1d1b" stroke-width="1"/>
+<text x="608.0" y="470.0" font-size="8" text-anchor="middle" fill="#1d1d1b" font-weight="normal" font-family="Helvetica, Arial, sans-serif">F-D1</text>
+<rect x="584.6" y="294.6" width="46.8" height="46.8" fill="#e6e6e6" stroke="#1d1d1b" stroke-width="1"/>
+<text x="608.0" y="288.0" font-size="8" text-anchor="middle" fill="#1d1d1b" font-weight="normal" font-family="Helvetica, Arial, sans-serif">F-D2</text>
+<rect x="584.6" y="112.6" width="46.8" height="46.8" fill="#e6e6e6" stroke="#1d1d1b" stroke-width="1"/>
+<text x="608.0" y="106.0" font-size="8" text-anchor="middle" fill="#1d1d1b" font-weight="normal" font-family="Helvetica, Arial, sans-serif">F-D3</text>
+<rect x="322.0" y="175.0" width="104.0" height="104.0" fill="#e6e6e6" stroke="#1d1d1b" stroke-width="1"/>
+<circle cx="342.8" cy="258.2" r="7.8" fill="white" stroke="#1d1d1b"/>
+<circle cx="342.8" cy="195.8" r="7.8" fill="white" stroke="#1d1d1b"/>
+<circle cx="405.2" cy="258.2" r="7.8" fill="white" stroke="#1d1d1b"/>
+<circle cx="405.2" cy="195.8" r="7.8" fill="white" stroke="#1d1d1b"/>
+<text x="374.0" y="231.0" font-size="9" text-anchor="middle" fill="#1d1d1b" font-weight="normal" font-family="Helvetica, Arial, sans-serif">PC-1</text>
+<text x="374.0" y="572.8" font-size="13" text-anchor="middle" fill="#1d1d1b" font-weight="bold" font-family="Helvetica, Arial, sans-serif">FOUNDATION PLAN</text>
+<text x="374.0" y="588.8" font-size="9" text-anchor="middle" fill="#555" font-weight="normal" font-family="Helvetica, Arial, sans-serif">Pads 1800 x 1800 x 600, top -0.600. Pile cap PC-1 4000 x 4000 x 1000, top -0.600. 4 piles Ø600, 12 m long.</text>
+</svg>

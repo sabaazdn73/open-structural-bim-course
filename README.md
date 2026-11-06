@@ -12,6 +12,14 @@ It covers the everyday tasks of structural BIM modelling, from levels and grids 
 free way to learn the workflow and to practise for structural BIM roles. It uses IFC, the open standard, so what
 you learn carries over to any BIM program.
 
+## Practise in your browser
+
+**[tnega.app/bim](https://www.tnega.app/bim/)** is the practice panel of this course: every exercise with its steps for
+FreeCAD and Bonsai, the brief and the starting files, and a box where you drop your IFC file to have it checked. The
+checker runs in your browser (Python and IfcOpenShell compiled to WebAssembly), so your file is not uploaded. You still
+model in FreeCAD or Bonsai on your own computer; both are free. The panel is the [`web/`](web/) folder of this
+repository, so you can also serve it yourself (`python -m http.server` in `web/`).
+
 ## What is in this repository
 
 | Folder | What it holds |
@@ -21,6 +29,7 @@ you learn carries over to any BIM program.
 | [`datasets/`](datasets/) | Starting files: the architect's model, an MEP model, a renovation model, a model full of problems, a bloated model, a type catalogue. |
 | [`checker/`](checker/) | `bimcheck`, the automatic grader (Python, reads IFC, SVG, PDF and CSV). |
 | [`solutions/`](solutions/) | Reference answers: a scripted model built with the IfcOpenShell API (the same API Bonsai uses) and FreeCAD scripts. Try the exercise first. |
+| [`web/`](web/) | The practice panel: the lessons and the checker in a web page. `tools/build_web.py` generates its data. |
 | [`tools/`](tools/) | Scripts that generate the brief, the datasets, the reference answers and the lessons from one data file. |
 | [`tests/`](tests/) | Tests: every check passes on the reference answer and fails on a wrong file. |
 
