@@ -13,7 +13,7 @@ let queue = Promise.resolve();
 function say(msg) { postMessage({ type: 'status', msg }); }
 
 async function load(base) {
-  say('Loading the checker: Python, NumPy and IfcOpenShell (about 40 MB the first time, then cached by the browser)...');
+  say('Loading the checker: Python, NumPy and IfcOpenShell (about 30 MB the first time, then cached by the browser)...');
   importScripts(PYODIDE + 'pyodide.js');
   py = await loadPyodide({ indexURL: PYODIDE });
   await py.loadPackage(['micropip', 'numpy']);
