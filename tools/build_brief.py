@@ -218,6 +218,118 @@ def write_fixtures():
     return out
 
 
+
+
+def write_brief_text():
+    P, S = spec.PROJECT, spec
+    L = []
+    a = L.append
+    a("# TB-01 Training Building: the project brief")
+    a("")
+    a("This is the building you model through the whole course. It is fictional. Every number below comes from")
+    a("[`checker/bimcheck/spec.py`](../checker/bimcheck/spec.py), the same file the checker reads, so the brief and the")
+    a("checks always agree. Lengths are in metres; levels are measured from Level 0 (+0.000).")
+    a("")
+    a("Drawings: [Level 1 framing plan](drawings/TB-01_brief_level1_framing_plan.svg), "
+      "[section through grid 2](drawings/TB-01_brief_section_grid2.svg), "
+      "[foundation plan](drawings/TB-01_brief_foundation_plan.svg).")
+    a("")
+    a("## Project and site")
+    a("")
+    a("| Item | Value |")
+    a("|---|---|")
+    a(f"| Project name | {P['project_name']} |")
+    a(f"| Site name | {P['site_name']} |")
+    a(f"| Building name | {P['building_name']} |")
+    a(f"| Latitude, longitude | {P['latitude']}, {P['longitude']} (a fictional plot in Lisbon) |")
+    a(f"| Elevation of Level 0 above sea level | {P['site_elevation']:.1f} m |")
+    a(f"| True north | {P['true_north_deg']:.0f} degrees clockwise from project north (+Y) |")
+    a("| Units | metres (or millimetres) |")
+    a("")
+    a("## Levels")
+    a("")
+    a("| Level | Elevation |")
+    a("|---|---|")
+    for n, z in S.STOREYS:
+        a(f"| {n} | {z:+.3f} |")
+    a("")
+    a("Structural levels are at the top of the structural slab.")
+    a("")
+    a("## Grid")
+    a("")
+    a("| Axis | Position | Direction |")
+    a("|---|---|---|")
+    for t, x in S.GRID_X.items():
+        a(f"| {t} | x = {x:.3f} | parallel to Y |")
+    for t, y in S.GRID_Y.items():
+        a(f"| {t} | y = {y:.3f} | parallel to X |")
+    a("")
+    a("## Ground floor structure (Level 0 to Level 1)")
+    a("")
+    c, w, sl, b, st = S.COLUMN, S.CORE, S.SLAB, S.BEAM, S.STAIR
+    a(f"- **Columns**: {int(c['size']*1000)} x {int(c['size']*1000)} mm at all 12 grid intersections, named by grid "
+      f"(C-A1 ... C-D3), from {c['z0']:+.3f} up to the slab soffit {c['z1']:+.3f}. Concrete {c['concrete']}, exposure {c['exposure']}.")
+    a(f"- **Core walls**: four load-bearing walls, {int(w['t']*1000)} mm thick, forming a core from x {w['x0']} to {w['x1']} "
+      f"and y {w['y0']} to {w['y1']} (outside faces), from {w['z0']:+.3f} to {w['z1']:+.3f}. The architect's model "
+      "([`datasets/architect_model.ifc`](../datasets/architect_model.ifc)) holds the same walls; trace them from it.")
+    a(f"- **Level 1 slab**: {int(S.SLAB_T*1000)} mm, top {sl['z1']:+.3f}, edges at the outer column faces "
+      f"(x {sl['x0']} to {sl['x1']}, y {sl['y0']} to {sl['y1']}). Two openings: the core (x {sl['openings']['core'][0]} "
+      f"to {sl['openings']['core'][2]}, y {sl['openings']['core'][1]} to {sl['openings']['core'][3]}) and the stair "
+      f"(x {sl['openings']['stair'][0]} to {sl['openings']['stair'][2]}, y {sl['openings']['stair'][1]} to {sl['openings']['stair'][3]}). "
+      f"Volume {S.slab_volume():.2f} m3.")
+    a(f"- **Beams**: on every grid line, between column faces, {int(b['b']*1000)} wide x {int(b['h']*1000)} deep below the "
+      f"soffit ({b['z0']:+.3f} to {b['z1']:+.3f}). Model only the downstand: the slab above is not counted twice. "
+      "Names: B-1/AB means the beam on grid 1 between grids A and B. 17 beams.")
+    a(f"- **Stair**: one straight flight, {st['x1']-st['x0']:.1f} m wide between x {st['x0']} and {st['x1']}, starting at "
+      f"y {st['y0']} and rising in +Y: {st['risers']} risers of {int(st['riser']*1000)} mm, treads {int(st['going']*1000)} mm, "
+      "landing in the stair opening at Level 1.")
+    a("")
+    a("## Foundations")
+    a("")
+    f, pc, p = S.FOOTING, S.PILE_CAP, S.PILES
+    a(f"- **Pad footings**: {f['size']} x {f['size']} x {f['t']} m under every column, top {f['z1']:+.3f}, named F-A1 ... F-D3. "
+      f"Concrete {f['concrete']}, exposure {f['exposure']}.")
+    a(f"- **Pile cap** PC-1: {pc['size']} x {pc['size']} x {pc['t']} m centred on the core (x {pc['cx']}, y {pc['cy']}), "
+      f"top {pc['z1']:+.3f}.")
+    a(f"- **Piles**: four, {int(p['d']*1000)} mm diameter, {p['length']:.0f} m long, {p['offset']} m each way from the core centre, "
+      f"from the underside of the cap. Concrete {p['concrete']}.")
+    a("")
+    a("## Reinforcement (exercise 3.4)")
+    a("")
+    rc, rf = S.REBAR["column"], S.REBAR["footing"]
+    a(f"- Steel grade {S.REBAR['steel']}.")
+    a(f"- **Column C-A1**: {rc['long_n']} vertical bars Ø{int(rc['long_d']*1000)} (four corners and four mid-sides), "
+      f"links Ø{int(rc['link_d']*1000)} at {int(rc['link_s']*1000)} mm, {int(rc['cover']*1000)} mm nominal cover to the links.")
+    a(f"- **Footing F-A1**: bottom mesh Ø{int(rf['d']*1000)} at {int(rf['s']*1000)} mm each way, {int(rf['cover']*1000)} mm cover.")
+    a("")
+    a("## Data")
+    a("")
+    a("| Element | Concrete | Exposure | Fire resistance | Type name |")
+    a("|---|---|---|---|---|")
+    a(f"| Columns | {c['concrete']} | {c['exposure']} | {S.FIRE['IfcColumn']} | {S.TYPES['IfcColumn']} |")
+    a(f"| Beams | {b['concrete']} | {b['exposure']} | {S.FIRE['IfcBeam']} | {S.TYPES['IfcBeam']} |")
+    a(f"| Slab | {sl['concrete']} | {sl['exposure']} | {S.FIRE['IfcSlab']} | |")
+    a(f"| Core walls | {w['concrete']} | {w['exposure']} | {S.FIRE['IfcWall']} | |")
+    a(f"| Pad footings | {f['concrete']} | {f['exposure']} | | {S.TYPES['IfcFooting']} |")
+    a(f"| Pile cap and piles | {pc['concrete']} | {pc['exposure']} | | |")
+    a("")
+    a(f"Custom property set **{S.CUSTOM_PSET}**: FireResistance (above) and DesignWorkingLife = {S.DESIGN_LIFE}.")
+    a("")
+    a("## Drawings to produce (sections 5 and 6)")
+    a("")
+    a(f"- Sheet **{S.SHEET['number']}**, title **{S.SHEET['title']}**, scale {S.SHEET['scale']}.")
+    a("- Revisions: " + "; ".join(f"{r} {d}" for r, d in S.SHEET["revisions"]) + ".")
+    a(f"- Detail title: **{S.DETAIL_TITLE}**.")
+    a("")
+    a("The concrete classes and exposure classes follow EN 206 and Eurocode 2 notation. They are a reasonable "
+      "choice for a teaching model, not a design: a real project sets them from its own exposure and the National Annex.")
+    path = os.path.join(ROOT, "brief", "README.md")
+    with open(path, "w", encoding="utf-8") as fh:
+        fh.write("\n".join(L) + "\n")
+    return path
+
+
 if __name__ == "__main__":
     print(write_brief_drawings())
     print(write_fixtures())
+    print(write_brief_text())
