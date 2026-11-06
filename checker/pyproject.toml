@@ -1,0 +1,25 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "bimcheck"
+version = "0.1.0"
+description = "Automatic checks for the Open Structural BIM Course exercises"
+readme = "README.md"
+license = {text = "MIT"}
+authors = [{name = "Saba Azadegan"}]
+requires-python = ">=3.9"
+dependencies = ["ifcopenshell>=0.8", "numpy"]
+
+[project.optional-dependencies]
+pdf = ["pypdf"]
+
+[project.scripts]
+bimcheck = "bimcheck.__main__:main"
+
+[tool.setuptools.packages.find]
+include = ["bimcheck*"]
+
+[tool.setuptools.package-data]
+bimcheck = ["data/*.csv"]

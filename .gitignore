@@ -1,0 +1,7 @@
+__pycache__/
+*.pyc
+.pytest_cache/
+*.FCStd1
+*.blend1
+build/
+*.egg-info/
