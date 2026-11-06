@@ -280,7 +280,9 @@
         el('div', null,
           el('section', { class: 'card' }, el('h2', { text: 'What you build' }),
             el('ul', { class: 'build' }, e.build.map(b => el('li', { html: b }))),
-            el('p', { class: 'note' }, 'All numbers come from the ', el('a', { href: '#/brief', text: 'project brief' }), '. Starting files are on the ', el('a', { href: '#/files', text: 'Files' }), ' page.')),
+            eid.startsWith('7.')
+              ? el('p', { class: 'note' }, 'The numbers of section 7 that are not in the ', el('a', { href: '#/brief', text: 'project brief' }), ' are given above. Starting files are on the ', el('a', { href: '#/files', text: 'Files' }), ' page.')
+              : el('p', { class: 'note' }, 'All numbers come from the ', el('a', { href: '#/brief', text: 'project brief' }), '. Starting files are on the ', el('a', { href: '#/files', text: 'Files' }), ' page.')),
           ...stepsBlock(e),
           el('details', { class: 'why' }, el('summary', { text: 'Why this matters' }), el('div', { html: e.why }))),
         checkCard(eid, e)),
