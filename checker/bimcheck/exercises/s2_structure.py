@@ -34,8 +34,9 @@ def check_columns(m, r):
             bad_name.append(f"{mark} named '{el.Name}'")
         if not _in_storey(m, el, "Level 0"):
             bad_storey.append(mark)
-    r.check(not bad_size, f"Columns are {int(s*1000)} x {int(s*1000)} mm", "; ".join(bad_size))
-    r.check(not bad_z, f"Columns run from {c['z0']:+.3f} to the slab soffit {c['z1']:+.3f}", "; ".join(bad_z))
+    more = lambda xs: "; ".join(xs[:3]) + (f" ... ({len(xs)} columns)" if len(xs) > 3 else "")  # noqa: E731
+    r.check(not bad_size, f"Columns are {int(s*1000)} x {int(s*1000)} mm", more(bad_size))
+    r.check(not bad_z, f"Columns run from {c['z0']:+.3f} to the slab soffit {c['z1']:+.3f}", more(bad_z))
     r.check(not bad_name, "Columns are named by grid (C-A1 ... C-D3)", "; ".join(bad_name[:6]))
     r.check(not bad_storey, "Columns belong to Level 0", f"not in Level 0: {bad_storey}")
     return found

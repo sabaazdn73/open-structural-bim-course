@@ -14,3 +14,4 @@ jobs:
       - run: python tools/build_lessons.py
       - run: git config --global user.email ci@example.com && git config --global user.name CI
       - run: python -m pytest -q tests
+      - run: git diff --exit-code course brief tests/fixtures

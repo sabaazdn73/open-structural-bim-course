@@ -254,7 +254,7 @@ def write_brief_text():
     for n, z in S.STOREYS:
         a(f"| {n} | {z:+.3f} |")
     a("")
-    a("Structural levels are at the top of the structural slab.")
+    a("Structural levels are at the top of the structural slab. The Foundation level is the underside of the pad footings.")
     a("")
     a("## Grid")
     a("")
@@ -264,6 +264,8 @@ def write_brief_text():
         a(f"| {t} | x = {x:.3f} | parallel to Y |")
     for t, y in S.GRID_Y.items():
         a(f"| {t} | y = {y:.3f} | parallel to X |")
+    a("")
+    a("Grid lines extend 2 m past the outer grids.")
     a("")
     a("## Ground floor structure (Level 0 to Level 1)")
     a("")
@@ -283,7 +285,8 @@ def write_brief_text():
       "Names: B-1/AB means the beam on grid 1 between grids A and B. 17 beams.")
     a(f"- **Stair**: one straight flight, {st['x1']-st['x0']:.1f} m wide between x {st['x0']} and {st['x1']}, starting at "
       f"y {st['y0']} and rising in +Y: {st['risers']} risers of {int(st['riser']*1000)} mm, treads {int(st['going']*1000)} mm, "
-      "landing in the stair opening at Level 1.")
+      "The last riser is at y 6.32; the slab opening ends at y 6.40, and the 80 mm between them is the top step onto "
+      "the slab (a short top tread in Bonsai; in FreeCAD the slab edge closes it). Concrete C30/37.")
     a("")
     a("## Foundations")
     a("")
@@ -295,13 +298,19 @@ def write_brief_text():
     a(f"- **Piles**: four, {int(p['d']*1000)} mm diameter, {p['length']:.0f} m long, {p['offset']} m each way from the core centre, "
       f"from the underside of the cap. Concrete {p['concrete']}.")
     a("")
+    a("Not modelled in this course: the column stubs and core walls between the foundations (-0.600) and Level 0, "
+      "the ground slab, and starter bars and laps. That is why columns and walls start at +0.000.")
+    a("")
     a("## Reinforcement (exercise 3.4)")
     a("")
     rc, rf = S.REBAR["column"], S.REBAR["footing"]
-    a(f"- Steel grade {S.REBAR['steel']}.")
+    a(f"- Steel grade {S.REBAR['steel']} (A500 NR, the Portuguese designation of a 500 MPa ribbed bar; B500B or B500C "
+      "in EN 1992-1-1 and EN 10080 terms).")
     a(f"- **Column C-A1**: {rc['long_n']} vertical bars Ø{int(rc['long_d']*1000)} (four corners and four mid-sides), "
       f"links Ø{int(rc['link_d']*1000)} at {int(rc['link_s']*1000)} mm, {int(rc['cover']*1000)} mm nominal cover to the links.")
-    a(f"- **Footing F-A1**: bottom mesh Ø{int(rf['d']*1000)} at {int(rf['s']*1000)} mm each way, {int(rf['cover']*1000)} mm cover.")
+    a(f"- **Footing F-A1**: bottom mesh Ø{int(rf['d']*1000)} at {int(rf['s']*1000)} mm each way, centred in the footing "
+      f"(12 bars each way, from -825 to +825 mm about the footing centre), {int(rf['cover']*1000)} mm cover (the footing is "
+      "cast on blinding; concrete cast directly against soil needs at least 75 mm).")
     a("")
     a("## Data")
     a("")
@@ -313,6 +322,7 @@ def write_brief_text():
     a(f"| Core walls | {w['concrete']} | {w['exposure']} | {S.FIRE['IfcWall']} | |")
     a(f"| Pad footings | {f['concrete']} | {f['exposure']} | | {S.TYPES['IfcFooting']} |")
     a(f"| Pile cap and piles | {pc['concrete']} | {pc['exposure']} | | |")
+    a("| Stair | C30/37 | XC1 | | |")
     a("")
     a(f"Custom property set **{S.CUSTOM_PSET}**: FireResistance (above) and DesignWorkingLife = {S.DESIGN_LIFE}.")
     a("")

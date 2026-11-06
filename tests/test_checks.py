@@ -247,3 +247,16 @@ def test_mitred_core_corners_are_not_overlaps(tmp_path):
 
 def test_column_into_slab_is_an_overlap(tmp_path):
     assert not run("2.5", _frame_with_core(tmp_path, mitred=False, column_top=3.6)).items[0].ok
+
+
+def test_true_north_wrong_direction_fails(tmp_path):
+    import ifcopenshell
+    f = ifcopenshell.open(ref("tb01_s1.ifc"))
+    for ctx in f.by_type("IfcGeometricRepresentationContext"):
+        if not ctx.is_a("IfcGeometricRepresentationSubContext") and ctx.TrueNorth is not None:
+            x, y = ctx.TrueNorth.DirectionRatios[:2]
+            ctx.TrueNorth = f.createIfcDirection((-x, y))
+    out = tmp_path / "north.ifc"
+    f.write(str(out))
+    res = run("1.1", str(out))
+    assert not res.passed and "counter-clockwise" in [i for i in res.items if not i.ok][0].hint

@@ -115,7 +115,7 @@ def add_rebar(m):
     f = spec.FOOTING
     hf = mm(f["size"] / 2)
     n = int((f["size"] - 2 * rf["cover"] - rf["d"]) / rf["s"]) + 1
-    first = -hf + mm(rf["cover"] + rf["d"] / 2)
+    first = -(n - 1) * mm(rf["s"]) / 2   # mesh centred in the footing
     z1 = mm(f["z0"] + rf["cover"] + rf["d"] / 2)
     z2 = z1 + mm(rf["d"])
     cv = mm(rf["cover"])

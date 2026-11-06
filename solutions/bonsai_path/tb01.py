@@ -268,7 +268,7 @@ class TB01:
         n = int((f["size"] - 2 * rf["cover"] - rf["d"]) / rf["s"]) + 1
         z1 = f["z0"] + rf["cover"] + rf["d"] / 2
         z2 = z1 + rf["d"]
-        first = -hf + rf["cover"] + rf["d"] / 2
+        first = -(n - 1) * rf["s"] / 2   # mesh centred in the footing
         for k in range(n):
             t = first + k * rf["s"]
             self.bars.append(self.rebar(f"F-A1 X{k+1}", [(x - hf + rf["cover"], y + t, z1), (x + hf - rf["cover"], y + t, z1)],

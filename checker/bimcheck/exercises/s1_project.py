@@ -52,12 +52,12 @@ def ex_1_1(path):
             x, y = tn.DirectionRatios[0], tn.DirectionRatios[1]
             angle = math.degrees(math.atan2(x, y))
             break
-    r.check(angle is not None and abs(abs(angle) - p["true_north_deg"]) <= 0.5,
-            f"True north set {p['true_north_deg']} degrees from project north",
-            f"found: {fmt(angle) + ' degrees' if angle is not None else 'no true north in the model'}")
-    if angle is not None and abs(abs(angle) - p["true_north_deg"]) <= 0.5 and angle < 0:
-        r.items[-1].hint = ("the angle is right; note that it is stored as counter-clockwise. The brief asks for true "
-                            "north 12 degrees clockwise from project north (towards +X).")
+    hint = f"found: {fmt(angle) + ' degrees' if angle is not None else 'no true north in the model'}"
+    if angle is not None and abs(angle + p["true_north_deg"]) <= 0.5:
+        hint = ("found 12 degrees counter-clockwise; the brief asks for 12 degrees clockwise from project north, "
+                "towards +X (FreeCAD: Declination -12; Bonsai: see the lesson)")
+    r.check(angle is not None and abs(angle - p["true_north_deg"]) <= 0.5,
+            f"True north {p['true_north_deg']:.0f} degrees clockwise from project north", hint)
     return r
 
 

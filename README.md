@@ -8,9 +8,9 @@ revisions, phases, design options, Git worksharing, model checks, clash detectio
 step-by-step instructions for **two free programs, FreeCAD and Bonsai (Blender)**, and a checker that reads your
 IFC file and tells you what is right and what is not.
 
-The course follows the same outline as a typical commercial structural BIM course, so it is a free way to learn
-the workflow and to practise for structural BIM roles. It uses IFC, the open standard, so what you learn carries
-over to any BIM program.
+It covers the everyday tasks of structural BIM modelling, from levels and grids to the issued model, so it is a
+free way to learn the workflow and to practise for structural BIM roles. It uses IFC, the open standard, so what
+you learn carries over to any BIM program.
 
 ## What is in this repository
 
@@ -48,9 +48,9 @@ Then open [course/00_getting_started.md](course/00_getting_started.md).
 ## How the checking works
 
 The checker does not care which program made your file. It reads the IFC data and the geometry itself
-(positions, sizes, volumes, levels, properties, materials, types) and compares them with the brief. All the
-numbers live in one file, [`checker/bimcheck/spec.py`](checker/bimcheck/spec.py), which also generates the brief,
-so the brief and the checks cannot disagree.
+(positions, sizes, volumes, levels, properties, materials, types) and compares them with the brief. The
+numbers of the brief live in one file, [`checker/bimcheck/spec.py`](checker/bimcheck/spec.py), which also generates
+the brief, so the brief and the checks cannot disagree. Section 7 adds a few numbers of its own, given in its lessons.
 
 ```
 $ python -m bimcheck 2.1 tb01.ifc
@@ -59,18 +59,26 @@ Exercise 2.1: Columns
 
   PASS  12 columns between Level 0 and Level 1
   PASS  One column at every grid intersection
+  PASS  Columns are 400 x 400 mm
   FAIL  Columns run from +0.000 to the slab soffit +3.350
-        C-A1 0.000 to 3.600; C-A2 0.000 to 3.600 ...
+        C-A1 0.000 to 3.600; C-A2 0.000 to 3.600; C-A3 0.000 to 3.600 ... (12 columns)
+  PASS  Columns are named by grid (C-A1 ... C-D3)
+  PASS  Columns belong to Level 0
+
+  5 of 6 checks passed.
 ```
 
 ## Status and honesty notes
 
-- The checker and the reference answers are tested automatically (see `tests/`).
-- The FreeCAD steps were written for FreeCAD 1.1.3, the Bonsai steps for Bonsai 0.9 (the button names were also checked against 0.8.5).
-  Some steps were run by script rather than clicked through in the interface; each lesson says so where it matters.
-  If a step does not match what you see, please open an issue.
+- The checker and the reference answers are tested automatically with pytest (see `tests/`).
+- The FreeCAD steps are for FreeCAD 1.1.3. Where possible they were run by script in FreeCAD without the
+  interface; the rest were written from the FreeCAD source code. No step was clicked through in the interface.
+- The Bonsai steps are for Bonsai 0.9 and were written from the Bonsai source code (the labels were also checked
+  against the 0.8.5 source). Blender was not run; the scripts in the Bonsai steps were tested with IfcOpenShell
+  outside Blender.
 - Where a program has no tool for something (for example, Bonsai has no reinforcement tool yet), the lesson
-  gives a short tested script instead and says so.
+  gives a short script instead and says so.
+- If a step does not match what you see, please open an issue with your program version.
 - The concrete and exposure classes in the brief are reasonable teaching values, not a design.
 
 ## Licence
@@ -78,8 +86,9 @@ Exercise 2.1: Columns
 - Code (checker, tools, scripts): [MIT](LICENSE).
 - Course text, brief, drawings and datasets: [CC BY 4.0](LICENSE-CONTENT.md).
 
-This course is independent. It is not affiliated with or endorsed by Autodesk, the FreeCAD project or the Bonsai
-project. Revit and Navisworks are trademarks of Autodesk, Inc. No Autodesk material is included.
+This course is independent. It is not affiliated with or endorsed by Autodesk, the FreeCAD project, the Bonsai
+project or the Blender Foundation. Revit and Navisworks are trademarks of Autodesk, Inc. No Autodesk material is
+included.
 
 ## Author
 

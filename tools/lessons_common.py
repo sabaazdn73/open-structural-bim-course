@@ -24,8 +24,7 @@ L["1.1"] = dict(
            "Site latitude **38.7369**, longitude **-9.1427**, elevation of Level 0 **90.0 m** above sea level.",
            "True north **12 degrees clockwise** from project north (the +Y axis of the model)."],
     why="Every other model on the project (architecture, MEP, survey) must land in the same place. Names, units "
-        "and location are the first thing a coordinator checks when two models do not line up, and the first thing "
-        "a permit portal reads. Project north is the drawing's 'up'; true north is the real one, and the angle "
+        "and location are the first thing a coordinator checks when two models do not line up. Project north is the drawing's 'up'; true north is the real one, and the angle "
         "between them drives orientation, sun studies and the setting out on site.",
     check="python -m bimcheck 1.1 tb01.ifc", save="tb01.ifc")
 
@@ -35,7 +34,7 @@ L["1.2"] = dict(
     build=["Foundation **-1.200**, Level 0 **+0.000**, Level 1 **+3.600**, Level 2 **+7.200**, Roof **+10.800**.",
            "Use exactly these names; they are how the checker (and your colleagues) find the levels.",
            "All levels belong to the building TB-01."],
-    why="In IFC a level is an *IfcBuildingStorey*: every element is placed in one, and schedules, drawings and "
+    why="In IFC a level is an *IfcBuildingStorey*: elements are placed in one, and schedules, drawings and "
         "quantities are organised by it. Structural levels are usually at the top of the structural slab, which "
         "is a few centimetres below the architect's finished floor level; agree which one you model before you start.",
     check="python -m bimcheck 1.2 tb01.ifc", save="tb01.ifc")
@@ -46,7 +45,7 @@ L["1.3"] = dict(
     build=["Lettered axes A, B, C, D parallel to Y at x = 0, 6, 12, 18 m.",
            "Numbered axes 1, 2, 3 parallel to X at y = 0, 7, 14 m.",
            "Each axis must run across the whole building (A to D lines from below grid 1 to beyond grid 3, and so on). "
-           "The brief extends them 2 m past the outer grids."],
+           "Grid lines extend 2 m past the outer grids (see the brief)."],
     why="The grid is the contract between all disciplines: drawings, site setting out and coordination meetings "
         "all refer to 'B/2', not to coordinates. In IFC it is an *IfcGrid* with *IfcGridAxis* objects, each with a "
         "tag (A, 1...) that other programs can read.",
@@ -166,9 +165,9 @@ L["3.5"] = dict(
     build=["Columns, beams, slab and core walls: material **Concrete C30/37**.",
            "Pad footings, the pile cap and the piles: **Concrete C25/30**.",
            "On every concrete element, `Pset_ConcreteElementGeneral`: StrengthClass (C30/37 or C25/30) and "
-           "ExposureClass (XC1 above ground, XC2 for footings, cap and piles)."],
+           "ExposureClass (XC1 inside the building, XC2 for footings, cap and piles)."],
     why="The material drives the quantities by concrete class and the colours in views; the property set is what "
-        "a reviewer or an automatic check reads (see the model-checking notes in this repository). A model "
+        "a reviewer or an automatic check reads. A model "
         "without this data looks finished but cannot be checked.",
     check="python -m bimcheck 3.5 tb01.ifc", save="tb01.ifc")
 
@@ -212,7 +211,8 @@ L["4.3"] = dict(
            "FireResistance: columns **R90**, beams **R60**, slab **REI60**, walls **REI90**.",
            "DesignWorkingLife: **50** on all of them."],
     why="Standard property sets (Pset_...) cover the common data; everything else a project needs goes into "
-        "custom sets with an agreed name. The name is the contract: a typo means the data is invisible to "
+        "custom sets with an agreed name. (IFC already has a standard place for fire resistance, "
+        "Pset_ColumnCommon.FireRating and the like; a custom set is used here to practise the mechanism.) The name is the contract: a typo means the data is invisible to "
         "whoever reads the model next.",
     check="python -m bimcheck 4.3 tb01.ifc", save="tb01.ifc")
 
@@ -243,6 +243,8 @@ L["5.3"] = dict(
     build=["A detail view (a callout, or an enlarged section at 1:20) of footing F-A1 with the column above.",
            "Title **TYPICAL COLUMN FOOTING DETAIL**.",
            "Notes: concrete **C25/30**, steel **A500**, bottom mesh **Ø16 @ 150** each way, **50 mm cover**.",
+           "The model has no column stub or starter bars below Level 0 (see the brief); draw the stub in the detail "
+           "with 2D lines if you want it to read as a real footing detail.",
            "Export as SVG or PDF."],
     why="Details are where 2D annotation adds what the model does not show well. Keep notes short and tied to the "
         "model's data so they do not contradict it.",
@@ -342,14 +344,15 @@ L["7.5"] = dict(
     slug="7.5_clash_detection", title="Clash detection with the MEP model",
     goal="Find the clashes between your structure and the MEP model, and resolve them with openings.",
     build=["Run a clash check between your TB-01 model (sections 1 and 2) and `datasets/mep_model.ifc`.",
-           "Duct D-1 (300 x 150) crosses three beams on grid A-B; duct D-2 (300 x 150) crosses two core walls.",
+           "Duct D-1 (300 x 150) crosses the three beams of bay A-B (B-1/AB, B-2/AB, B-3/AB); duct D-2 (300 x 150) "
+           "crosses the west and east core walls.",
            "Resolve each clash with an opening in the beam or wall, at least 25 mm clear of the duct on every side. "
            "Do not move the ducts: the MEP model is not yours.",
            "Keep openings local: each beam keeps at least 90% of its volume.",
            "If your program has no clash tool, the lesson gives a short script that finds the clashes.",
            "Save as structure.ifc."],
-    why="Clash detection is what Navisworks is used for, and it is the daily work of BIM coordinators "
-        "(and, for example, of the BIM teams that model supports and anchors for MEP). Any opening in a beam "
+    why="Clash detection is what Navisworks is used for, and it is the daily work of BIM coordinators. "
+        "Any opening in a beam "
         "must be agreed with the structural engineer; this exercise sizes them, a real project also checks them.",
     check="python -m bimcheck 7.5 structure.ifc datasets/mep_model.ifc", save="structure.ifc")
 

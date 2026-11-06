@@ -43,12 +43,16 @@ def main():
             nav.append(f"[{next_} {L[next_]['title']} →]({rel(next_)})")
         md = [f"# Exercise {eid}: {d['title']}", "", f"**Goal.** {d['goal']}", "", "## What you build", ""]
         md += [f"- {b}" for b in d["build"]]
-        md += ["", "All numbers come from the [project brief](../../brief/README.md) and its "
-                   "[drawings](../../brief/drawings/).", "",
+        src = ("The numbers of section 7 that are not in the [project brief](../../brief/README.md) are given above."
+               if eid.startswith("7.") else
+               "All numbers come from the [project brief](../../brief/README.md) and its [drawings](../../brief/drawings/).")
+        save = {"7.2": "Save your two options as `option_A.ifc` and `option_B.ifc`",
+                "7.3": "Keep your work in a Git repository"}.get(eid, f"Save or export your work as `{d['save']}`")
+        md += ["", src, "",
                "## In FreeCAD", "", steps("freecad", eid), "",
                "## In Bonsai", "", steps("bonsai", eid), "",
                "## Check your work", "",
-               f"Save or export your work as `{d['save']}`, then run:", "", "```", d["check"], "```", "",
+               f"{save}, then run this from the course folder:", "", "```", d["check"], "```", "",
                "Every line should say PASS. A FAIL line tells you what was expected and what was found.", "",
                "## Why this matters", "", d["why"], "", "---", "", " · ".join(nav), ""]
         out = os.path.join(ROOT, lesson_path(eid))

@@ -6,8 +6,8 @@ Everything in this course is free and open source.
 
 | Tool | What it is | Get it |
 |---|---|---|
-| **FreeCAD 1.1** | A parametric 3D modeller. Its BIM workbench models buildings and exports IFC. | [freecad.org](https://www.freecad.org/downloads.php) (Windows, macOS, Linux) |
-| **Blender + Bonsai** | Blender is a 3D program; Bonsai is the add-on that turns it into a native IFC (BIM) authoring tool. | [bonsaibim.org](https://bonsaibim.org) (install the Blender version that the current Bonsai release supports) |
+| **FreeCAD 1.1** (steps written for 1.1.3) | A parametric 3D modeller. Its BIM workbench models buildings and exports IFC. | [freecad.org](https://www.freecad.org/downloads.php) (Windows, macOS, Linux) |
+| **Blender + Bonsai 0.9** | Blender is a 3D program; Bonsai is the add-on that turns it into a native IFC (BIM) authoring tool. | [bonsaibim.org](https://bonsaibim.org) (install the Blender version that the current Bonsai release supports) |
 | **Python 3.9 or newer** | Runs the checker that grades your exercises. | [python.org](https://www.python.org/downloads/) |
 | **Git** (section 7) | Version control for exercise 7.3. | [git-scm.com](https://git-scm.com/downloads) |
 
@@ -42,14 +42,16 @@ For drawings exported as PDF (sections 5 and 6), also install `pypdf`: `python -
 1. Read the [project brief](../brief/README.md) and look at its [drawings](../brief/drawings/). You will model this building, TB-01, a small reinforced concrete frame (three bays by two) with a stair and a core.
 2. Do the exercises in order. Each one builds on your model from the one before; most of them save to the same file, `tb01.ifc`.
 3. After each exercise, run the checker. It reads your IFC file (or your exported drawing) and tells you, line by line, what is right and what is not.
-4. Section 7 gives you some separate starting files in [`datasets/`](../datasets/).
+4. Some exercises (2.2, 4.2 and section 7) start from files in [`datasets/`](../datasets/).
+
+**Where to keep your files.** Keep your work in the course folder (or a `work/` folder inside it) and run the checker from the course folder, so paths like `datasets/architect_model.ifc` work. For example: `python -m bimcheck 2.1 work/tb01.ifc`.
 
 **FreeCAD users:** keep your work in a FreeCAD file (`tb01.FCStd`) and export it to `tb01.ifc` each time you want to check it.
 **Bonsai users:** Bonsai works directly in IFC, so the file you save with **File > Save IFC Project** is already `tb01.ifc`.
 
 ## If you know Revit
 
-The course follows the order of a typical Revit structure course, with the open equivalents:
+If you know Revit, this table maps its features to their open (IFC) equivalents:
 
 | In Revit | In this course (IFC) |
 |---|---|
@@ -71,4 +73,4 @@ The course follows the order of a typical Revit structure course, with the open 
 | Purge unused | Purging unused types, materials, profiles and groups |
 | Transfer project standards | A project library or template file |
 
-Revit is a trademark of Autodesk, Inc. This course is independent and contains no Autodesk material.
+Revit and Navisworks are trademarks of Autodesk, Inc. This course is independent and contains no Autodesk material.
